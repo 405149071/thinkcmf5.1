@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 0.8rem;
+        }
+
+        body {
+            font-size: 14px;
+            background: #fff;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        html,
+        body {
+            max-width: 720px;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .index-content .banner {
+            position: relative;
+        }
+
+        .index-content .banner img {
+            width: 100%;
+            padding: 0;
+            height: 80px;
+        }
+
+        .testimg img {
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .index-content .index-category {
+            margin-top: 5%;
+        }
+
+        .index-content .index-category .category label {
+            display: block;
+            padding: 10% 0;
+            color: #999;
+        }
+
+        .container_p1 {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .container_p2 {
+            line-height: 25px;
+            color: #ff6000;
+            letter-spacing: 1.2px;
+            font-size: 1rem;
+        }
+
+        .progress {
+            /* margin-top: 30px;
+            margin-bottom: 10px; */
+            margin: 30px 0 10px 0;
+            text-align: center;
+        }
+
+        .banner_img {
+            position: absolute;
+            bottom: 0;
+            top: 30px;
+        }
+
+        .btn-mybtstyle {
+            background: #ff6000;
+            border: 1px solid #ff6000;
+        }
+
+        .chooseStyle {
+            color: #ff6000;
+            border-right-color: #ff6000 !important;
+            border-right-width: 3px !important;
+        }
+
+        .el-message-box {
+            position: absolute;
+            top: 30%;
+            left: 20%;
+            width: 60% !important;
+            height: 120px !important;
+        }
+
+        .el-message-box__content {
+            padding: 5px 15px !important;
+        }
+
+        .el-message-box__btns {
+            padding: 0px 15px 0 !important;
+        }
+
+        .el-icon-close {
+            display: none !important;
+        }
+
+        .el-button--primary {
+            padding: 6px 11px;
+            background: #ff6000 !important;
+            border: 1px solid #ff6000 !important;
+        }
+
+        .el-message-box__title>span {
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+        }
+
+        .el-message-box__message p {
+            text-align: center;
+            padding-right: 20px;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar {
+            background: #ff6000;
+
+        }
+
+        .tabbar {
+            background-color: #999;
+            margin: 0 auto;
+            height: 10px;
+        }
+
+        #info {
+            position: fixed;
+            width: 100%;
+            height: 100px;
+            background-color: blue
+        }
+    </style>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.js"></script>
+    <!--引入vue-->
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+
+<body>
+<!--页面容器-->
+<div class="index-content" id="my" v-cloak>
+    <div id="quest" v-show="name!=''">
+        <!--轮播图广告-->
+        <!-- <div class="banner">
+        <img src="http://pv7ayvy30.bkt.clouddn.com/banner1.jpg" />
+    </div> -->
+        <div class="tabbar"></div>
+        <div class="testimg">
+            <img :src="allQuest[questIndex].questimg" />
+        </div>
+
+        <div class="container">
+            <p class=" container_p1">题目信息</p>
+            <p class="container_p2">{{allQuest[questIndex].id}}.{{allQuest[questIndex].title}}</p>
+            <ul class="list-group">
+                <li class="list-group-item">
+                <li class="list-group-item" @click="getChoose(0)"
+                    :class="{'chooseStyle':(answers.get(questIndex)?answers.get(questIndex).id:0)==chooses[0].id}">
+                    {{chooses[0].id}}.{{chooses[0].answer}}</li>
+                <li class="list-group-item" @click="getChoose(1)"
+                    :class="{'chooseStyle':(answers.get(questIndex)?answers.get(questIndex).id:0)==chooses[1].id}">
+                    {{chooses[1].id}}.{{chooses[1].answer}}</li>
+
+                <template v-if=" chooses[2].answer!=''">
+                    <li class=" list-group-item" @click="getChoose(2)"
+                        :class="{'chooseStyle':(answers.get(questIndex)?answers.get(questIndex).id:0)==chooses[2].id}">
+                        {{chooses[2].id}}.{{chooses[2].answer}}</li>
+                </template>
+                <template v-else>
+                    <li class="list-group-item">
+                        &nbsp;</li>
+                </template>
+
+                <template v-if=" chooses[3].answer!=''">
+                    <li class=" list-group-item" @click="getChoose(3)"
+                        :class="{'chooseStyle':(answers.get(questIndex)?answers.get(questIndex).id:0)==chooses[3].id}">
+                        {{chooses[3].id}}.{{chooses[3].answer}}</li>
+                </template>
+                <template v-else>
+                    <li class="list-group-item">
+                        &nbsp;</li>
+                </template>
+
+                <div style="margin-top: 10px;float: right">
+                    <button type="button" v-show="questIndex<allQuest.length" class="btn btn-info btn-sm"
+                            @click="backQuestion()">上一题</button>&nbsp;&nbsp;
+                    <button type="button" v-show="questIndex<allQuest.length-1" class="btn btn-success btn-sm"
+                            @click="nextQuestion()">下一题</button>
+                    <button type="button" v-show="questIndex==allQuest.length-1 && !isSubmit"
+                            class="btn btn-mybtstyle btn-sm" @click="submit()">提交</button>
+                </div>
+                </li>
+            </ul>
+            <div class="container">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" :style="{width:progress+'%'}">{{progress}}%</div>
+                </div>
+                <div style="float: right;">{{questIndex+1}}/{{allQuest.length}}</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var allQuestData = [{
+        "id": 1,
+        "title": "观察图中的人，是顺时针转？或逆时针转？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/27995fa34b124ef2a63b1e34adb4cfa1.gif",
+        "answers": [{
+            "id": 1,
+            "answer": "顺时针",
+            "score": 1,
+        }, {
+            "id": 2,
+            "answer": "逆时针",
+            "score": 2,
+        }, {
+            "id": 3,
+            "answer": "",
+            "score": 0,
+        }, {
+            "id": 4,
+            "answer": "",
+            "score": 0,
+        }, ],
+    }, {
+        "id": 2,
+        "title": "下图选项哪个是正确的摆放？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/1b1dec6e59ab49ab95f2e04a5947ad81.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "A",
+            "score": 2,
+        }, {
+            "id": 2,
+            "answer": "B",
+            "score": 1,
+        }, {
+            "id": 3,
+            "answer": "",
+            "score": 0,
+        }, {
+            "id": 4,
+            "answer": "",
+            "score": 0,
+        }, ],
+    }, {
+        "id": 3,
+        "title": "下图给你什么感受？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/ca7e54944fa145a9823bf9e1329c6299.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "模糊的，眩晕的",
+            "score": 2,
+        }, {
+            "id": 2,
+            "answer": "恬静的，悠闲地",
+            "score": 1,
+        }, {
+            "id": 3,
+            "answer": "",
+            "score": 0,
+        }, {
+            "id": 4,
+            "answer": "",
+            "score": 0,
+        }, ],
+    }, {
+        "id": 4,
+        "title": "下图你会优先帮助谁?",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/5e197ea584ca4b4ea7c949d1b0e45545.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "1",
+            "score": 1,
+        }, {
+            "id": 2,
+            "answer": "2",
+            "score": 2,
+        }, {
+            "id": 3,
+            "answer": "3",
+            "score": 4,
+        }, {
+            "id": 4,
+            "answer": "4",
+            "score": 3,
+        }, ],
+    }, {
+        "id": 5,
+        "title": "下面四件事分别是水壶开了，电话响了，宝宝哭了，狗在撕沙发，你会先做什么？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/dc1bd43aaea044f69b06236dfda5a11d.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "1",
+            "score": 4,
+        }, {
+            "id": 2,
+            "answer": "2",
+            "score": 3,
+        }, {
+            "id": 3,
+            "answer": "3",
+            "score": 1,
+        }, {
+            "id": 4,
+            "answer": "4",
+            "score": 2,
+        }, ],
+    }, {
+        "id": 6,
+        "title": "下图你最先看到的是什么形象？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/25a83795433c4ce09d9147a07a7cb3bb.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "苹果",
+            "score": 2,
+        }, {
+            "id": 2,
+            "answer": "人脸",
+            "score": 1,
+        }, {
+            "id": 3,
+            "answer": "",
+            "score": 0,
+        }, {
+            "id": 4,
+            "answer": "",
+            "score": 0,
+        }, ],
+    }, {
+        "id": 7,
+        "title": "下图发生了什么事情？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/03d2cee554044932807887ec2ea0d922.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "男子与母亲吵架了",
+            "score": 2,
+        }, {
+            "id": 2,
+            "answer": "男子有心事儿不知道该不该说",
+            "score": 1,
+        }, {
+            "id": 3,
+            "answer": "",
+            "score": 0,
+        }, {
+            "id": 4,
+            "answer": "",
+            "score": 0,
+        }, ],
+    }, {
+        "id": 8,
+        "title": "你从下图墨迹中看到了什么？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/eb5003086a0d47daad4c52646caa1e87.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "一个陀螺；一个建筑物",
+            "score": 2,
+        }, {
+            "id": 2,
+            "answer": "一个戴帽子的人；一个站立的狗",
+            "score": 1,
+        }, {
+            "id": 3,
+            "answer": "",
+            "score": 0,
+        }, {
+            "id": 4,
+            "answer": "",
+            "score": 0,
+        }, ],
+    }, {
+        "id": 9,
+        "title": "你从下图最先看到什么？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/76b5211f5de141ddbadf660e0aec3964.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "骷髅头",
+            "score": 2,
+        }, {
+            "id": 2,
+            "answer": "两个姑娘",
+            "score": 1,
+        }, {
+            "id": 3,
+            "answer": "",
+            "score": 0,
+        }, {
+            "id": 4,
+            "answer": "",
+            "score": 0,
+        }, ],
+    }, {
+        "id": 10,
+        "title": "下图哪个场景令你更兴奋？",
+        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/d7d0b633b6764ff2af73c37d9b013f32.webp",
+        "answers": [{
+            "id": 1,
+            "answer": "A",
+            "score": 4,
+        }, {
+            "id": 2,
+            "answer": "B",
+            "score": 3,
+        }, {
+            "id": 3,
+            "answer": "C",
+            "score": 2,
+        }, {
+            "id": 4,
+            "answer": "D",
+            "score": 1,
+        }, ],
+    }];
+
+    var v = new Vue({
+        el: '#my', //element
+        data: {
+            name: '',
+            tel: "15810583469",
+            allQuest: allQuestData,
+            questIndex: 0, // 当前第几道题目
+            answers: new Map(), // 用户选择的答案
+            isSubmit: false,
+        },
+        computed: {
+            // 需要选择的所有有项目
+            chooses: function () {
+                return this.allQuest[this.questIndex].answers;
+            },
+            progress: function () {
+                return Math.ceil(this.answers.size * 100 / this.allQuest.length);
+            }
+        },
+        mounted() {
+            //   弹出必须输入姓名的弹出层
+            bootbox.prompt({
+                title: "输入姓名，点击「开始」，来测试您的惯用脑",
+                centerVertical: true,
+                buttons: {
+                    cancel: {
+                        label: "取消",
+                        className: 'btn-danger',
+
+                    },
+                    confirm: {
+                        label: "确定",
+                        className: 'btn-info',
+                        callback: function () {
+                            console.log('Custom OK clicked');
+                        }
+                    }
+                },
+                callback: function (result) {
+                    console.log('This was logged in the callback: ' + result);
+                    // 异步回调，用this不好用
+                    if (result != null)
+                        v.name = result;
+                }
+            }).css({
+                'margin-top': function () {
+                    var w = $(window).height();
+                    var b = $(".modal-dialog").height();
+                    var h = (w - b) / 2;
+                    return h + "px";
+                }
+            });
+        },
+        methods: {
+            getChoose(answerIndex) {
+                console.log("选择了", this.questIndex, answerIndex);
+                let answer = this.chooses[answerIndex];
+                console.log("answer:", answer);
+                this.answers.set(this.questIndex, answer);
+                //必须得重新赋值才行
+                this.answers = new Map(this.answers);
+            },
+            nextQuestion() {
+                if (this.answers.get(this.questIndex)) {
+                    this.questIndex = this.questIndex + 1;
+                } else {
+                    this.alert("该题目还没选择，请选择完再选择下一题目");
+                    // alert("该题目还没选择，请选择完再选择下一题目")
+                }
+            },
+            backQuestion() {
+                if (this.questIndex > 0) {
+                    this.questIndex = this.questIndex - 1;
+                } else {
+                    this.alert("已经到达第一道题目了");
+                }
+            },
+
+            alert(mess, title) {
+                bootbox.alert({
+                    title: title,
+                    message: mess,
+                    backdrop: true,
+                    buttons: {
+                        ok: {
+                            label: '确定',
+                            className: 'btn-success'
+                        }
+                    }
+                }).css({
+                    'margin-top': function () {
+                        var w = $(window).height();
+                        var b = $(".modal-dialog").height();
+                        var h = (w - b) / 2;
+                        return h + "px";
+                    }
+                });
+            },
+            submit() {
+                if (this.answers.get(this.questIndex)) {
+                    // 答案求和
+                    let score = 0;
+                    let desc = "未知";
+
+                    this.answers.forEach(function (value, key) {
+                        score += value.score;
+                    });
+                    console.log("总得分:", score);
+                    if (score >= 10 && score <= 18) {
+                        desc =
+                            "惯用脑：通过测试得分可以看出来，你更擅长使用右脑。你在逻辑思维方面欠缺，但是在情绪感受方面有着良好的表现，这反映了你有良好的感性思维。同时，你在事物的组织性方面也欠缺，但是在想象力方面会更加优秀，所以你有较强的艺术天赋。研究表明，人们对于右脑的开发利用度非常的低，而你却是非常难得的。";
+                    }
+                    if (score >= 19 && score <= 26) {
+                        desc =
+                            "惯用脑：通过测试得分可以看出来，你更擅长使用左脑。你在情绪感受方面欠缺，但是在逻辑思维方面有着良好的表现，这反映了你有良好的理性思维。同时，你在想象力方面有些欠缺，但是在事物的组织性方面更加优秀，所以你有较强的统计推理能力。";
+                    }
+                    this.alert(desc, "感谢您的参与,总得分：" + score);
+                    // 发送后台提交数据
+                    // map 转 obj
+                    let obj = Object.create(null);
+                    for (let [k, v] of this.answers) {
+                        obj[k] = v;
+                    }
+
+                    $.ajax({
+                        type: 'post',
+                        url: '/api/shc/quest/submitanswer',
+                        data: {
+                            "name": this.name,
+                            "data": JSON.stringify(obj),
+                            "score": score,
+                            "desc": desc,
+                        },
+                        success: function (htmltxt) {
+                            console.log(htmltxt);
+                            if (htmltxt.code == 1) {
+                                //alert("提交成功");
+                                //隐藏提交按钮
+                                v.isSubmit = true;
+
+                            } else {
+                                alert("提交失败");
+                            }
+                        }
+                    });
+                } else {
+                    this.alert("该题目还没选择，请选择完再选择下一题目");
+                    // alert("该题目还没选择，请选择完再选择下一题目")
+                }
+            },
+        },
+    });
+</script>
+
+</body>
+
+</html>
