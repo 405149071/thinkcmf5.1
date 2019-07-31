@@ -7,7 +7,7 @@
  * Time: 8:45 AM
  */
 
-namespace api\shc\model;
+namespace app\shc\model;
 
 use think\Model;
 

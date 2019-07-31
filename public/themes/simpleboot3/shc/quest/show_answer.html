@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>搜索 {$theme_vars.varName1|default=''} </title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="">
+		<include file="public@head"/>
+		<hook name="before_head_end"/>
+	</head>
+<body class="">
+<include file="public@nav"/>
+<div class="container tc-main">
+	<div class="row">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>姓名</th>
+					<th>得分</th>
+					<th>结论</th>
+					<th>时间</th>
+					<th>明细</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="result" id="item">
+					<tr>
+						<td>{$item.name}</td>
+						<td>{$item.score} </td>
+						<td>{$item.desc}</td>
+						<td>{$item.add_time}</td>
+						<td>{$item.answer}</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+		<div class="pagination">{$result->render()}</div>
+		
+	</div>
+
+	<include file="public@footer"/>
+</div>
+
+<include file="public@scripts"/>
+<hook name="before_body_end"/>
+</body>
+</html>

@@ -9,6 +9,7 @@
 
 namespace app\shc\controller;
 
+use app\shc\model\ShcQuestAnswerModel;
 use cmf\controller\HomeBaseController;
 
 class QuestController extends HomeBaseController
@@ -28,6 +29,17 @@ class QuestController extends HomeBaseController
 //            exit("本游戏只支持手机");
 //        }
 
+    }
+
+    public function showAnswer()
+    {
+        $m = new ShcQuestAnswerModel();
+        $r = $m
+            ->order('id', 'desc')
+            ->paginate(20);;
+        $this->assign("result",$r);
+        $this->assign('page', $r->render());//单独提取分页出来
+        return $this->fetch();
     }
 
 
