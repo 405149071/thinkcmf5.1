@@ -542,6 +542,10 @@
                 this.answers.set(this.questIndex, answer);
                 //必须得重新赋值才行
                 this.answers = new Map(this.answers);
+                // 自动进行下一题目
+                if (this.questIndex < this.allQuest.length - 1) {
+                    this.questIndex++;
+                }
             },
             nextQuestion() {
                 if (this.answers.get(this.questIndex)) {
