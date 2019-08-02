@@ -23,11 +23,11 @@ class QuestController extends HomeBaseController
     public function show()
     {
 //        exit("haha");
-//        if(cmf_is_mobile()){
+        if(cmf_is_mobile()){
             return $this->fetch();
-//        }else{
-//            exit("本游戏只支持手机");
-//        }
+        }else{
+            exit("本游戏只支持手机");
+        }
 
     }
 
