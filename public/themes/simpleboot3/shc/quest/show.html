@@ -169,7 +169,7 @@
 <body>
 <!--页面容器-->
 <div class="index-content" id="my" v-cloak>
-    <div id="quest" v-show="name!=''">
+    <div id="quest">
         <!--轮播图广告-->
         <!-- <div class="banner">
         <img src="http://pv7ayvy30.bkt.clouddn.com/banner1.jpg" />
@@ -474,37 +474,37 @@
         },
         mounted() {
             //   弹出必须输入姓名的弹出层
-            bootbox.prompt({
-                title: "输入姓名，点击「开始」，来测试您的惯用脑",
-                centerVertical: true,
-                buttons: {
-                    cancel: {
-                        label: "取消",
-                        className: 'btn-danger',
-
-                    },
-                    confirm: {
-                        label: "确定",
-                        className: 'btn-info',
-                        callback: function () {
-                            console.log('Custom OK clicked');
-                        }
-                    }
-                },
-                callback: function (result) {
-                    console.log('This was logged in the callback: ' + result);
-                    // 异步回调，用this不好用
-                    if (result != null)
-                        v.name = result;
-                }
-            }).css({
-                'margin-top': function () {
-                    var w = $(window).height();
-                    var b = $(".modal-dialog").height();
-                    var h = (w - b) / 2;
-                    return h + "px";
-                }
-            });
+            // bootbox.prompt({
+            //     title: "输入姓名，点击「开始」，来测试您的惯用脑",
+            //     centerVertical: true,
+            //     buttons: {
+            //         cancel: {
+            //             label: "取消",
+            //             className: 'btn-danger',
+            //
+            //         },
+            //         confirm: {
+            //             label: "确定",
+            //             className: 'btn-info',
+            //             callback: function () {
+            //                 console.log('Custom OK clicked');
+            //             }
+            //         }
+            //     },
+            //     callback: function (result) {
+            //         console.log('This was logged in the callback: ' + result);
+            //         // 异步回调，用this不好用
+            //         if (result != null)
+            //             v.name = result;
+            //     }
+            // }).css({
+            //     'margin-top': function () {
+            //         var w = $(window).height();
+            //         var b = $(".modal-dialog").height();
+            //         var h = (w - b) / 2;
+            //         return h + "px";
+            //     }
+            // });
         },
         methods: {
             getChoose(answerIndex) {
@@ -569,8 +569,22 @@
                         desc =
                             "惯用左脑：通过测试得分可以看出来，你更擅长使用左脑。你在情绪感受方面欠缺，但是在逻辑思维方面有着良好的表现，这反映了你有良好的理性思维。同时，你在想象力方面有些欠缺，但是在事物的组织性方面更加优秀，所以你有较强的统计推理能力。";
                     }
-                    this.alert(desc, "感谢您的参与,总得分：" + score);
+                    // this.alert(desc, "感谢您的参与,总得分：" + score);
                     v.isSubmit = true;
+
+                    bootbox.dialog({
+                        title: "感谢您的参与,总得分：" + score,
+                        message: desc,
+                        closeButton:false
+                    }).css({
+                        'margin-top': function () {
+                            var w = $(window).height();
+                            var b = $(".modal-dialog").height();
+                            var h = (w - b) / 2;
+                            return h + "px";
+                        }
+                    });;
+
                     // 发送后台提交数据
                     // // map 转 obj
                     // let obj = Object.create(null);
@@ -606,6 +620,8 @@
             },
         },
     });
+
+
 </script>
 
 </body>
