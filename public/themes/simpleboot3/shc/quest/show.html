@@ -37,9 +37,13 @@
             height: 80px;
         }
 
+        .testimg {
+            text-align:center;
+        }
+
         .testimg img {
-            width: 100%;
-            height: 200px;
+            /*width: 100%;*/
+            height: 250px;
             margin-top: 10px;
             border-radius: 5px;
         }
@@ -56,14 +60,14 @@
 
         .container_p1 {
             margin-top: 20px;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
         .container_p2 {
             line-height: 25px;
             color: #ff6000;
             letter-spacing: 1.2px;
-            font-size: 1rem;
+            font-size: 1.3rem;
         }
 
         .progress {
@@ -144,6 +148,9 @@
             height: 100px;
             background-color: blue
         }
+        .list-group-item {
+            font-size:1.2rem
+        }
     </style>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
@@ -166,6 +173,7 @@
         </div>
 
         <div class="container">
+            <!--<img src="__TMPL__/public/assets/images/shc/1.gif" />-->
             <p class=" container_p1">题目信息</p>
             <p class="container_p2">{{allQuest[questIndex].id}}.{{allQuest[questIndex].title}}</p>
             <ul class="list-group">
@@ -223,7 +231,7 @@
     var allQuestData = [{
         "id": 1,
         "title": "观察图中的人，是顺时针转？或逆时针转？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/27995fa34b124ef2a63b1e34adb4cfa1.gif",
+        "questimg": "__TMPL__/public/assets/images/shc/1.gif",
         "answers": [{
             "id": 1,
             "answer": "顺时针",
@@ -244,7 +252,7 @@
     }, {
         "id": 2,
         "title": "下图选项哪个是正确的摆放？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/1b1dec6e59ab49ab95f2e04a5947ad81.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/2.webp",
         "answers": [{
             "id": 1,
             "answer": "A",
@@ -265,7 +273,7 @@
     }, {
         "id": 3,
         "title": "下图给你什么感受？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/ca7e54944fa145a9823bf9e1329c6299.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/3.webp",
         "answers": [{
             "id": 1,
             "answer": "模糊的，眩晕的",
@@ -286,7 +294,7 @@
     }, {
         "id": 4,
         "title": "下图你会优先帮助谁?",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/5e197ea584ca4b4ea7c949d1b0e45545.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/4.webp",
         "answers": [{
             "id": 1,
             "answer": "1",
@@ -307,7 +315,7 @@
     }, {
         "id": 5,
         "title": "下面四件事分别是水壶开了，电话响了，宝宝哭了，狗在撕沙发，你会先做什么？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/dc1bd43aaea044f69b06236dfda5a11d.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/5.webp",
         "answers": [{
             "id": 1,
             "answer": "1",
@@ -328,7 +336,7 @@
     }, {
         "id": 6,
         "title": "下图你最先看到的是什么形象？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/25a83795433c4ce09d9147a07a7cb3bb.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/6.webp",
         "answers": [{
             "id": 1,
             "answer": "苹果",
@@ -349,7 +357,7 @@
     }, {
         "id": 7,
         "title": "下图发生了什么事情？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/03d2cee554044932807887ec2ea0d922.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/7.webp",
         "answers": [{
             "id": 1,
             "answer": "男子与母亲吵架了",
@@ -370,7 +378,7 @@
     }, {
         "id": 8,
         "title": "你从下图墨迹中看到了什么？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/eb5003086a0d47daad4c52646caa1e87.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/8.webp",
         "answers": [{
             "id": 1,
             "answer": "一个陀螺；一个建筑物",
@@ -391,7 +399,7 @@
     }, {
         "id": 9,
         "title": "你从下图最先看到什么？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/76b5211f5de141ddbadf660e0aec3964.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/9.webp",
         "answers": [{
             "id": 1,
             "answer": "骷髅头",
@@ -412,7 +420,7 @@
     }, {
         "id": 10,
         "title": "下图哪个场景令你更兴奋？",
-        "questimg": "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180810/d7d0b633b6764ff2af73c37d9b013f32.webp",
+        "questimg": "__TMPL__/public/assets/images/shc/10.webp",
         "answers": [{
             "id": 1,
             "answer": "A",
@@ -542,41 +550,41 @@
                     console.log("总得分:", score);
                     if (score >= 10 && score <= 18) {
                         desc =
-                            "惯用脑：通过测试得分可以看出来，你更擅长使用右脑。你在逻辑思维方面欠缺，但是在情绪感受方面有着良好的表现，这反映了你有良好的感性思维。同时，你在事物的组织性方面也欠缺，但是在想象力方面会更加优秀，所以你有较强的艺术天赋。研究表明，人们对于右脑的开发利用度非常的低，而你却是非常难得的。";
+                            "惯用右脑：通过测试得分可以看出来，你更擅长使用右脑。你在逻辑思维方面欠缺，但是在情绪感受方面有着良好的表现，这反映了你有良好的感性思维。同时，你在事物的组织性方面也欠缺，但是在想象力方面会更加优秀，所以你有较强的艺术天赋。研究表明，人们对于右脑的开发利用度非常的低，而你却是非常难得的。";
                     }
                     if (score >= 19 && score <= 26) {
                         desc =
-                            "惯用脑：通过测试得分可以看出来，你更擅长使用左脑。你在情绪感受方面欠缺，但是在逻辑思维方面有着良好的表现，这反映了你有良好的理性思维。同时，你在想象力方面有些欠缺，但是在事物的组织性方面更加优秀，所以你有较强的统计推理能力。";
+                            "惯用左脑：通过测试得分可以看出来，你更擅长使用左脑。你在情绪感受方面欠缺，但是在逻辑思维方面有着良好的表现，这反映了你有良好的理性思维。同时，你在想象力方面有些欠缺，但是在事物的组织性方面更加优秀，所以你有较强的统计推理能力。";
                     }
                     this.alert(desc, "感谢您的参与,总得分：" + score);
                     // 发送后台提交数据
-                    // map 转 obj
-                    let obj = Object.create(null);
-                    for (let [k, v] of this.answers) {
-                        obj[k] = v;
-                    }
-
-                    $.ajax({
-                        type: 'post',
-                        url: '/api/shc/quest/submitanswer',
-                        data: {
-                            "name": this.name,
-                            "data": JSON.stringify(obj),
-                            "score": score,
-                            "desc": desc,
-                        },
-                        success: function (htmltxt) {
-                            console.log(htmltxt);
-                            if (htmltxt.code == 1) {
-                                //alert("提交成功");
-                                //隐藏提交按钮
-                                v.isSubmit = true;
-
-                            } else {
-                                alert("提交失败");
-                            }
-                        }
-                    });
+                    // // map 转 obj
+                    // let obj = Object.create(null);
+                    // for (let [k, v] of this.answers) {
+                    //     obj[k] = v;
+                    // }
+                    //
+                    // $.ajax({
+                    //     type: 'post',
+                    //     url: '/api/shc/quest/submitanswer',
+                    //     data: {
+                    //         "name": this.name,
+                    //         "data": JSON.stringify(obj),
+                    //         "score": score,
+                    //         "desc": desc,
+                    //     },
+                    //     success: function (htmltxt) {
+                    //         console.log(htmltxt);
+                    //         if (htmltxt.code == 1) {
+                    //             //alert("提交成功");
+                    //             //隐藏提交按钮
+                    //             v.isSubmit = true;
+                    //
+                    //         } else {
+                    //             alert("提交失败");
+                    //         }
+                    //     }
+                    // });
                 } else {
                     this.alert("该题目还没选择，请选择完再选择下一题目");
                     // alert("该题目还没选择，请选择完再选择下一题目")
