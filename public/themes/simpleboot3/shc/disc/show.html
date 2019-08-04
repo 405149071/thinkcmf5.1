@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta id="met" name="viewport" content="width=device-width">
 
-    <title>DISC行为模式评量表</title>
+    <title>行为偏好测试</title>
     <style>
         * {
             margin: 0;
@@ -29,7 +29,7 @@
         }
 
         .testimg {
-            margin-top:50px;
+            margin-top:30px;
             text-align:center;
             font-size:30px;
             font-weight: bold;
@@ -111,12 +111,12 @@
             position: fixed;
             top: 20px;
             left: 50px;
-            width:80px;
+            width:120px;
             height : 20px;
             text-align: center;
             color:lightgray;
             font-weight: bold;
-            font-size:16px;
+            font-size:12px;
             /*border: 1px solid lightgray;*/
         }
 
@@ -140,7 +140,7 @@
     </div> -->
         <div class="tabbar"></div>
         <div class="testimg">
-            个人行为模式评量表
+            <!--个人行为模式评量表-->
         </div>
 
         <div class="container">
@@ -915,14 +915,17 @@
                             success: function (htmltxt) {
                                 console.log(htmltxt);
                                 if (htmltxt.code == 1) {
+                                    $("#met").remove();
                                     // alert("提交成功");
                                     v.resultData=htmltxt.data;
                                     console.log(v.resultData.d1.c_p)
                                     //隐藏提交按钮
                                     v.showResult = true;
+                                    // alert($("#met"));
+
                                     // 给个缩放比，好看图
                                     var _body = document.getElementsByTagName('body')[0];
-                                    _body.style.zoom = 0.5;
+                                    _body.style.zoom = 0.3;
                                 } else {
                                     alert("提交失败");
                                 }
