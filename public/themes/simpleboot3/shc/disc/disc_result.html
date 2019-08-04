@@ -7,7 +7,7 @@
 </style>
 
 <div>
-    <svg width="350" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+    <svg width="340" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink">
         <metadata id="metadata5">image/svg+xml</metadata>
         <metadata id="author">cahya dsn</metadata>
@@ -44,13 +44,13 @@
                 <rect id="block_s" fill="#ffffff" stroke="#ffffff" x="159" y="433" width="40" height="35" />
                 <rect id="block_c" fill="#ffffff" stroke="#ffffff" x="219" y="433" width="40" height="35" />
                 <text id="value_d" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="60" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d1->d}</text>
             <text id="value_i" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="120" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">2</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d1->i}</text>
             <text id="value_s" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="180" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d1->s}</text>
             <text id="value_c" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="240" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">3</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d1->c}</text>
             </g>
             <g id="panel_pattern">
                 <rect id="box_pattern" fill="#474749" stroke="#474749" x="20" y="488" width="310" height="44" />
@@ -60,7 +60,7 @@
                 y="520" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">PATTERNS</text>
                 <rect id="block_pattern" stroke="#ffffff" fill="#ffffff" x="39" y="493" width="220" height="35" />
                 <text id="value_pattern" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="142.5" y="516" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">Achiever</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve"></text>
             </g>
             <g id="segment_number">
                 <text id="label_segment" font-weight="bold" xml:space="preserve" text-anchor="middle"
@@ -171,20 +171,20 @@
                 <rect id="bar_c" fill="#474749" x="257" y="118" width="3" height="300" stroke="#474749" />
             </g>
             <g id="plot">
-                <ellipse id="point_d" ry="5" rx="5" cy="205" cx="78.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_i" ry="5" rx="5" cy="373" cx="138.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_s" ry="5" rx="5" cy="173.5" cx="198.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_c" ry="5" rx="5" cy="310" cx="258.5" stroke="#b3d2f2" fill="#000000" />
-                <line id="line_di" y1="205" x1="78.5" y2="373" x2="138.5" stroke-width="3" stroke="#000205" fill="none" />
-                <line id="line_is" y1="373" x1="138.5" y2="173.5" x2="198.5" stroke-width="3" stroke="#000205"
+                <ellipse id="point_d" ry="8" rx="8" cy="{$d1->d_p}" cx="78.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_i" ry="8" rx="8" cy="{$d1->i_p}" cx="138.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_s" ry="8" rx="8" cy="{$d1->s_p}" cx="198.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_c" ry="8" rx="8" cy="{$d1->c_p}" cx="258.5" stroke="#b3d2f2" fill="#f80033" />
+                <line id="line_di" y1="{$d1->d_p}" x1="78.5" y2="{$d1->i_p}" x2="138.5" stroke-width="5" stroke="#d03536" fill="none" />
+                <line id="line_is" y1="{$d1->i_p}" x1="138.5" y2="{$d1->s_p}" x2="198.5" stroke-width="5" stroke="#d03536"
                       fill="none" />
-                <line id="line_sc" y1="173.5" x1="198.5" y2="310" x2="258.5" stroke-width="3" stroke="#000205"
+                <line id="line_sc" y1="{$d1->s_p}" x1="198.5" y2="{$d1->c_p}" x2="258.5" stroke-width="5" stroke="#d03536"
                       fill="none" />
             </g>
         </g>
     </svg>
 
-    <svg width="350" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+    <svg width="340" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink">
         <metadata id="metadata5">image/svg+xml</metadata>
         <metadata id="author">cahya dsn</metadata>
@@ -221,13 +221,13 @@
                 <rect id="block_s" fill="#ffffff" stroke="#ffffff" x="159" y="433" width="40" height="35" />
                 <rect id="block_c" fill="#ffffff" stroke="#ffffff" x="219" y="433" width="40" height="35" />
                 <text id="value_d" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="60" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d2->d}</text>
             <text id="value_i" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="120" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">2</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d2->i}</text>
             <text id="value_s" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="180" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d2->s}</text>
             <text id="value_c" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="240" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">3</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d2->c}</text>
             </g>
             <g id="panel_pattern">
                 <rect id="box_pattern" fill="#474749" stroke="#474749" x="20" y="488" width="310" height="44" />
@@ -237,7 +237,7 @@
                 y="520" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">PATTERNS</text>
                 <rect id="block_pattern" stroke="#ffffff" fill="#ffffff" x="39" y="493" width="220" height="35" />
                 <text id="value_pattern" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="142.5" y="516" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">Achiever</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve"></text>
             </g>
             <g id="segment_number">
                 <text id="label_segment" font-weight="bold" xml:space="preserve" text-anchor="middle"
@@ -348,20 +348,20 @@
                 <rect id="bar_c" fill="#474749" x="257" y="118" width="3" height="300" stroke="#474749" />
             </g>
             <g id="plot">
-                <ellipse id="point_d" ry="5" rx="5" cy="205" cx="78.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_i" ry="5" rx="5" cy="373" cx="138.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_s" ry="5" rx="5" cy="173.5" cx="198.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_c" ry="5" rx="5" cy="310" cx="258.5" stroke="#b3d2f2" fill="#000000" />
-                <line id="line_di" y1="205" x1="78.5" y2="373" x2="138.5" stroke-width="3" stroke="#000205" fill="none" />
-                <line id="line_is" y1="373" x1="138.5" y2="173.5" x2="198.5" stroke-width="3" stroke="#000205"
+                <ellipse id="point_d" ry="8" rx="8" cy="{$d2->d_p}" cx="78.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_i" ry="8" rx="8" cy="{$d2->i_p}" cx="138.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_s" ry="8" rx="8" cy="{$d2->s_p}" cx="198.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_c" ry="8" rx="8" cy="{$d2->c_p}" cx="258.5" stroke="#b3d2f2" fill="#f80033" />
+                <line id="line_di" y1="{$d2->d_p}" x1="78.5" y2="{$d2->i_p}" x2="138.5" stroke-width="5" stroke="#0095df" fill="none" />
+                <line id="line_is" y1="{$d2->i_p}" x1="138.5" y2="{$d2->s_p}" x2="198.5" stroke-width="5" stroke="#0095df"
                       fill="none" />
-                <line id="line_sc" y1="173.5" x1="198.5" y2="310" x2="258.5" stroke-width="3" stroke="#000205"
+                <line id="line_sc" y1="{$d2->s_p}" x1="198.5" y2="{$d2->c_p}" x2="258.5" stroke-width="5" stroke="#0095df"
                       fill="none" />
             </g>
         </g>
     </svg>
 
-    <svg width="350" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+    <svg width="340" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink">
         <metadata id="metadata5">image/svg+xml</metadata>
         <metadata id="author">cahya dsn</metadata>
@@ -398,13 +398,13 @@
                 <rect id="block_s" fill="#ffffff" stroke="#ffffff" x="159" y="433" width="40" height="35" />
                 <rect id="block_c" fill="#ffffff" stroke="#ffffff" x="219" y="433" width="40" height="35" />
                 <text id="value_d" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="60" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d3->d}</text>
             <text id="value_i" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="120" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">2</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d3->i}</text>
             <text id="value_s" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="180" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d3->s}</text>
             <text id="value_c" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="240" y="458" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">3</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{$d3->c}</text>
             </g>
             <g id="panel_pattern">
                 <rect id="box_pattern" fill="#474749" stroke="#474749" x="20" y="488" width="310" height="44" />
@@ -414,7 +414,7 @@
                 y="520" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">PATTERNS</text>
                 <rect id="block_pattern" stroke="#ffffff" fill="#ffffff" x="39" y="493" width="220" height="35" />
                 <text id="value_pattern" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="142.5" y="516" font-size="20"
-                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">Achiever</text>
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve"></text>
             </g>
             <g id="segment_number">
                 <text id="label_segment" font-weight="bold" xml:space="preserve" text-anchor="middle"
@@ -525,18 +525,19 @@
                 <rect id="bar_c" fill="#474749" x="257" y="118" width="3" height="300" stroke="#474749" />
             </g>
             <g id="plot">
-                <ellipse id="point_d" ry="5" rx="5" cy="205" cx="78.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_i" ry="5" rx="5" cy="373" cx="138.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_s" ry="5" rx="5" cy="173.5" cx="198.5" stroke="#b3d2f2" fill="#000000" />
-                <ellipse id="point_c" ry="5" rx="5" cy="310" cx="258.5" stroke="#b3d2f2" fill="#000000" />
-                <line id="line_di" y1="205" x1="78.5" y2="373" x2="138.5" stroke-width="3" stroke="#000205" fill="none" />
-                <line id="line_is" y1="373" x1="138.5" y2="173.5" x2="198.5" stroke-width="3" stroke="#000205"
+                <ellipse id="point_d" ry="8" rx="8" cy="{$d3->d_p}" cx="78.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_i" ry="8" rx="8" cy="{$d3->i_p}" cx="138.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_s" ry="8" rx="8" cy="{$d3->s_p}" cx="198.5" stroke="#b3d2f2" fill="#f80033" />
+                <ellipse id="point_c" ry="8" rx="8" cy="{$d3->c_p}" cx="258.5" stroke="#b3d2f2" fill="#f80033" />
+                <line id="line_di" y1="{$d3->d_p}" x1="78.5" y2="{$d3->i_p}" x2="138.5" stroke-width="5" stroke="#00d100" fill="none" />
+                <line id="line_is" y1="{$d3->i_p}" x1="138.5" y2="{$d3->s_p}" x2="198.5" stroke-width="5" stroke="#00d100"
                       fill="none" />
-                <line id="line_sc" y1="173.5" x1="198.5" y2="310" x2="258.5" stroke-width="3" stroke="#000205"
+                <line id="line_sc" y1="{$d3->s_p}" x1="198.5" y2="{$d3->c_p}" x2="258.5" stroke-width="5" stroke="#00d100"
                       fill="none" />
             </g>
         </g>
     </svg>
+
 </div>
 
 
