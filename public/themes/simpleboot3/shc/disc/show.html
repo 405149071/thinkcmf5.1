@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DISC行为模式评量表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 1.2rem;
+        }
+
+        body {
+            font-size: 16px;
+            background: #fff;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        html,
+        body {
+            max-width: 720px;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .testimg {
+            margin-top:50px;
+            text-align:center;
+            font-size:30px;
+            font-weight: bold;
+        }
+
+        .testimg img {
+            /*width: 100%;*/
+            width:80%;
+            /*height: 250px;*/
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .container_p1 {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            text-align: right;
+            margin-right: 20px;
+        }
+
+        .container_p2 {
+            line-height: 25px;
+            color: #ff6000;
+            letter-spacing: 1.2px;
+            font-size: 1.3rem;
+        }
+
+        .progress {
+            /* margin-top: 30px;
+            margin-bottom: 10px; */
+            margin: 0px 0 10px 0;
+            text-align: center;
+        }
+
+        .btn-mybtstyle {
+            background: #ff6000;
+            border: 1px solid #ff6000;
+        }
+
+
+        .progress-bar {
+            background: #ff6000;
+
+        }
+
+        .tabbar {
+            background-color: #999;
+            margin: 0 auto;
+            height: 10px;
+        }
+
+
+        .bootbox-body {
+            font-size:1.3rem;
+        }
+
+
+        table {
+            margin:20px auto 0 auto !important;
+            width:80% !important;
+        }
+
+        table th {
+
+            font-size:1.0rem;
+        }
+
+        .container{
+            margin-top:20px;
+        }
+
+    </style>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.js"></script>
+    <!--<script src="__TMPL__/public/assets/css/shc/w3.css"></script>-->
+
+    <!--引入vue-->
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+
+<body>
+<!--页面容器-->
+<div class="index-content" id="my" v-cloak>
+    <div id="quest">
+        <!--轮播图广告-->
+        <!-- <div class="banner">
+        <img src="http://pv7ayvy30.bkt.clouddn.com/banner1.jpg" />
+    </div> -->
+        <div class="tabbar"></div>
+        <div class="testimg">
+            个人行为模式评量表
+        </div>
+
+        <div class="container">
+            <!--<img src="__TMPL__/public/assets/images/shc/1.gif" />-->
+            <!--<p class=" container_p1">题目信息</p>-->
+            <p class=" container_p1">
+
+                <!--<div style="margin-top: 10px;float: right">-->
+                    <button type="button" v-show="questIndex<allQuest.length" class="btn btn-info btn-sm"
+                            @click="backQuestion()">上一题</button>&nbsp;&nbsp;
+                    <button type="button" v-show="questIndex<allQuest.length-1" class="btn btn-success btn-sm"
+                            @click="nextQuestion()">下一题</button>
+                    <button type="button" v-show="questIndex==allQuest.length-1"
+                            class="btn btn-mybtstyle btn-sm" @click="submit()">提交</button>
+                <!--</div>-->
+
+            </p>
+
+
+            <div class="container_p2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>最像我</th>
+                        <th>最不像我</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td rowspan="5">{{questIndex+1}}</td>
+                        <td>{{allQuestData[questIndex][0]}} </td>
+                        <td><input type="radio" name="m" value="1" v-model="questAnswer.m" @change="selectm(1)"></td>
+                        <td><input type="radio" name="l" value="1" v-model="questAnswer.l" @change="selectl(1)"></td>
+                    </tr>
+                    <tr>
+                        <td>{{allQuestData[questIndex][1]}}</td>
+                        <td><input type="radio" name="m" value="2" v-model="questAnswer.m" @change="selectm(2)"></td>
+                        <td><input type="radio" name="l" value="2" v-model="questAnswer.l" @change="selectl(2)"></td>
+                    </tr>
+                    <tr>
+                        <td>{{allQuestData[questIndex][2]}}</td>
+                        <td><input type="radio" name="m" value="3" v-model="questAnswer.m" @change="selectm(3)"></td>
+                        <td><input type="radio" name="l" value="3" v-model="questAnswer.l" @change="selectl(3)"></td>
+                    </tr>
+                    <tr>
+                        <td>{{allQuestData[questIndex][3]}}</td>
+                        <td><input type="radio" name="m" value="4" v-model="questAnswer.m" @change="selectm(4)"></td>
+                        <td><input type="radio" name="l" value="4" v-model="questAnswer.l" @change="selectl(4)"></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="container">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" :style="{width:progress+'%'}">{{progress}}%</div>
+                </div>
+                <div style="float: right;">{{questIndex+1}}/{{allQuest.length}}</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!--<div class="soller">-->
+     <!--<img src="http://pv7ayvy30.bkt.clouddn.com/shc.png" >-->
+     <!--<span>SHC Studio</span>-->
+<!--</div>-->
+<form id="form1" action="{:url('/shc/disc/discresult')}" method="post">
+    <input id="data" type="hidden" name="data">
+</form>
+
+<script>
+    var allQuestData = [
+        ["热情的","大胆的","应对有分寸","满足的"],
+        ["谨慎的","果断的","说服力强的","和蔼的"],
+        ["友善的","准确的","直言不讳的","冷静的"]
+        // ["爱说话的","能自制的","遵循成规的","果决的"],
+        // ["富冒险性的","有洞察力的","好社交的","稳健的"],
+        // ["温和的","能够游说的","谦逊的","富创意的"],
+        // ["表情丰富的","谨慎的","掌控性强的","愿意回顾的"],
+        // ["泰然自若的","观察敏锐的","羞怯的","没耐心的"],
+        // ["富机智的","愿意配合的","富魅力的","坚持的"],
+        // ["勇敢的","擅激励人的","顺从的","胆怯的"],
+        // ["有保留的","殷勤亲切的","意志坚强的","快活自在的"],
+        // ["能鼓舞人的","亲切和蔼的","富洞察力的","独立自主的"],
+        // ["具竞争力的","顾虑周到的","高兴的","重隐私权的"],
+        // ["要求精确的","服从的","坚定的","爱打趣的"],
+        // ["富吸引力的","爱自我省察","固执的","可被预测的"],
+        // ["富逻辑的","大胆的","忠诚度强的","富魅力的"],
+        // ["好社交的","有耐心的","自信强的","说话温和的"],
+        // ["愿意顺应的","急切想要的","准确的","热情充沛的"],
+        // ["积极强势的","外向好动的","和蔼可亲的","胆怯的"],
+        // ["自信的","体谅人的","公平的","坚持己见的"],
+        // ["坚守纪律的","宽容的","热烈活泼的","坚持到底的"],
+        // ["情感冲动的","内向自省的","坚强有力的","随和易处的"],
+        // ["好社交的","精确的","有力的","温和的"],
+        // ["有魅力的","容易满足的","强力要求的","顺从的"],
+        // ["好辩论的","系统化的","愿意合作的","快乐无忧的"],
+        // ["快活的","精确的","直接了当的","脾气温顺的"],
+        // ["好动的","亲切友善的","讨人喜欢的","谨慎的"],
+        // ["应对有分寸","开拓力强的","乐观的","乐于助人的"]
+    ];
+
+    var v = new Vue({
+        el: '#my', //element
+        data: {
+            name: '',
+            tel: "15810583469",
+            allQuest: allQuestData,
+            questIndex: 0, // 当前第几道题目
+            progress:0, //进度情况
+            questAnswer:{"m":0,"l":0},
+            // m["1"=>{"m":1,"l":2}]
+            answers: new Map(), // 用户选择的答案
+            submitData:"",
+        },
+        methods: {
+            selectm(mIndex){
+                console.log("选择了", this.questIndex,",m:", mIndex);
+                this.questAnswer.m=mIndex;
+                if(this.questAnswer.m == this.questAnswer.l){
+                    // 不能选择同一个位置的值
+                    this.alert("不能选择相同的值");
+                    v.questAnswer.m=0;
+                    return;
+                }
+                this.answers.set(this.questIndex, this.questAnswer);
+                //必须得重新赋值才行
+                this.answers = new Map(this.answers);
+                //进度条
+                if(this.questAnswer.m > 0 && this.questAnswer.l > 0){
+                    this.progress = Math.ceil(this.answers.size * 100 / this.allQuest.length);
+                    // 自动进行下一题目
+                    this.nextQuestion();
+                }
+            },
+            selectl(lIndex){
+                console.log("选择了", this.questIndex,",l:",lIndex);
+                this.questAnswer.l=lIndex;
+                if(this.questAnswer.m == this.questAnswer.l){
+                    // 不能选择同一个位置的值
+                    this.alert("不能选择相同的值");
+                    this.questAnswer.l=0;
+                    console.log("1111",this.questAnswer.l)
+                }
+                this.answers.set(this.questIndex, this.questAnswer);
+                //必须得重新赋值才行
+                this.answers = new Map(this.answers);
+                //进度条
+                if(this.questAnswer.m > 0 && this.questAnswer.l > 0){
+                    this.progress = Math.ceil(this.answers.size * 100 / this.allQuest.length);
+                    // 自动进行下一题目
+                    this.nextQuestion();
+                }
+            },
+            nextQuestion() {
+                    if (this.questAnswer.m>0 && this.questAnswer.l>0 && this.questIndex<this.allQuest.length-1) {
+                        this.questIndex = this.questIndex + 1;
+                        this.questAnswer={"m":0,"l":0};
+                    } else if(this.questAnswer.m==0 || this.questAnswer.l==0){
+                        this.alert("该题目还没选择，请选择完再选择下一题目");
+                    }else{
+                    }
+            },
+            backQuestion() {
+                if (this.questIndex > 0) {
+                    this.questIndex = this.questIndex - 1;
+                    this.questAnswer=this.answers.get(this.questIndex);
+                } else {
+                    this.alert("已经到达第一道题目了");
+                }
+            },
+
+            alert(mess, title) {
+                bootbox.alert({
+                    title: title,
+                    message: mess,
+                    backdrop: true,
+                    buttons: {
+                        ok: {
+                            label: '确定',
+                            className: 'btn-success'
+                        }
+                    }
+                }).css({
+                    'margin-top': function () {
+                        var w = $(window).height();
+                        var b = $(".modal-dialog").height();
+                        var h = (w - b) / 2;
+                        return h + "px";
+                    }
+                });
+            },
+            submit() {
+                if (this.answers.get(this.questIndex)) {
+                    // 答案求和
+                    let score = 0;
+                    let desc = "未知";
+
+                    // 发送后台提交数据
+                    // // map 转 obj
+                    let obj = Object.create(null);
+                    for (let [k, v] of this.answers) {
+                        obj[k] = v;
+                    }
+                    // console.log(JSON.stringify(obj));
+                    $("#data").val(JSON.stringify(obj));
+                    $("#form1").submit();
+
+                } else {
+                    this.alert("该题目还没选择，请选择完再选择下一题目");
+                }
+            },
+        },
+    });
+
+
+</script>
+
+</body>
+
+</html>
