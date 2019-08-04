@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
     <title>DISC行为模式评量表</title>
     <style>
         * {
@@ -102,7 +103,7 @@
 
         #disc{
             width:1065px;
-            height: 550px;
+            /*height: 550px;*/
             position:absolute;
         }
 
@@ -110,7 +111,7 @@
             position: fixed;
             top: 20px;
             left: 50px;
-            width:50px;
+            width:80px;
             height : 20px;
             text-align: center;
             color:lightgray;
@@ -131,7 +132,7 @@
 
 <body>
 <!--页面容器-->
-<div class="index-content" id="my" v-cloak>
+<div id="my" v-cloak>
     <div id="quest" v-if="!showResult">
         <!--轮播图广告-->
         <!-- <div class="banner">
@@ -558,10 +559,10 @@
                     <ellipse id="point_i" ry="8" rx="8" :cy="resultData.d2.i_p" cx="138.5" stroke="#b3d2f2" fill="#898989" />
                     <ellipse id="point_s" ry="8" rx="8" :cy="resultData.d2.s_p" cx="198.5" stroke="#b3d2f2" fill="#898989" />
                     <ellipse id="point_c" ry="8" rx="8" :cy="resultData.d2.c_p" cx="258.5" stroke="#b3d2f2" fill="#898989" />
-                    <line id="line_di" :y1="resultData.d2.d_p" x1="78.5" :y2="resultData.d2.i_p" x2="138.5" stroke-width="5" stroke="#d03536" fill="none" />
-                    <line id="line_is" :y1="resultData.d2.i_p" x1="138.5" :y2="resultData.d2.s_p" x2="198.5" stroke-width="5" stroke="#d03536"
+                    <line id="line_di" :y1="resultData.d2.d_p" x1="78.5" :y2="resultData.d2.i_p" x2="138.5" stroke-width="5" stroke="#3d8ec6" fill="none" />
+                    <line id="line_is" :y1="resultData.d2.i_p" x1="138.5" :y2="resultData.d2.s_p" x2="198.5" stroke-width="5" stroke="#3d8ec6"
                           fill="none" />
-                    <line id="line_sc" :y1="resultData.d2.s_p" x1="198.5" :y2="resultData.d2.c_p" x2="258.5" stroke-width="5" stroke="#d03536"
+                    <line id="line_sc" :y1="resultData.d2.s_p" x1="198.5" :y2="resultData.d2.c_p" x2="258.5" stroke-width="5" stroke="#3d8ec6"
                           fill="none" />
                 </g>
             </g>
@@ -734,10 +735,10 @@
                     <ellipse id="point_i" ry="8" rx="8" :cy="resultData.d3.i_p" cx="138.5" stroke="#b3d2f2" fill="#898989" />
                     <ellipse id="point_s" ry="8" rx="8" :cy="resultData.d3.s_p" cx="198.5" stroke="#b3d2f2" fill="#898989" />
                     <ellipse id="point_c" ry="8" rx="8" :cy="resultData.d3.c_p" cx="258.5" stroke="#b3d2f2" fill="#898989" />
-                    <line id="line_di" :y1="resultData.d3.d_p" x1="78.5" :y2="resultData.d3.i_p" x2="138.5" stroke-width="5" stroke="#d03536" fill="none" />
-                    <line id="line_is" :y1="resultData.d3.i_p" x1="138.5" :y2="resultData.d3.s_p" x2="198.5" stroke-width="5" stroke="#d03536"
+                    <line id="line_di" :y1="resultData.d3.d_p" x1="78.5" :y2="resultData.d3.i_p" x2="138.5" stroke-width="5" stroke="#00e140" fill="none" />
+                    <line id="line_is" :y1="resultData.d3.i_p" x1="138.5" :y2="resultData.d3.s_p" x2="198.5" stroke-width="5" stroke="#00e140"
                           fill="none" />
-                    <line id="line_sc" :y1="resultData.d3.s_p" x1="198.5" :y2="resultData.d3.c_p" x2="258.5" stroke-width="5" stroke="#d03536"
+                    <line id="line_sc" :y1="resultData.d3.s_p" x1="198.5" :y2="resultData.d3.c_p" x2="258.5" stroke-width="5" stroke="#00e140"
                           fill="none" />
                 </g>
             </g>
@@ -919,6 +920,9 @@
                                     console.log(v.resultData.d1.c_p)
                                     //隐藏提交按钮
                                     v.showResult = true;
+                                    // 给个缩放比，好看图
+                                    var _body = document.getElementsByTagName('body')[0];
+                                    _body.style.zoom = 0.5;
                                 } else {
                                     alert("提交失败");
                                 }
@@ -936,10 +940,12 @@
             showquest(){
                 // 显示答题
                 v.showResult = false;
-            }
+                // 给个缩放比，好看图
+                var _body = document.getElementsByTagName('body')[0];
+                _body.style.zoom = 1.0;
+            },
         },
     });
-
 
 </script>
 
