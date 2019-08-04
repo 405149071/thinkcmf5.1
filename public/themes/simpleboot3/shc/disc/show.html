@@ -100,6 +100,25 @@
             margin-top:20px;
         }
 
+        #disc{
+            width:1065px;
+            height: 550px;
+            position:absolute;
+        }
+
+        #backbtn {
+            position: fixed;
+            top: 20px;
+            left: 50px;
+            width:50px;
+            height : 20px;
+            text-align: center;
+            color:lightgray;
+            font-weight: bold;
+            font-size:16px;
+            /*border: 1px solid lightgray;*/
+        }
+
     </style>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
@@ -113,7 +132,7 @@
 <body>
 <!--页面容器-->
 <div class="index-content" id="my" v-cloak>
-    <div id="quest">
+    <div id="quest" v-if="!showResult">
         <!--轮播图广告-->
         <!-- <div class="banner">
         <img src="http://pv7ayvy30.bkt.clouddn.com/banner1.jpg" />
@@ -193,6 +212,539 @@
         </div>
     </div>
 
+    <!-- 结果 -->
+
+    <div id="disc" v-if="showResult">
+        <div id="backbtn" @click="showquest()"> 返回 </div>
+        <svg width="340" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g class="layer">
+                <title>期望</title>
+                <g id="panel_top">
+                    <rect id="box_title" fill="#474749" x="20" y="15" width="310" height="35" stroke="#474749" />
+                    <text id="title_text" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="170" y="40" font-size="24"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">期望</text>
+                </g>
+                <g id="horizontal_line">
+                    <rect id="shadow_center" fill="#b1b1b3" stroke="#b3d2f2" x="18.38889" y="252.25" width="310" height="44" />
+                    <line id="hline1" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="378.25" x2="320"
+                          y2="378.25" />
+                    <line id="hline2" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="336.25" x2="320"
+                          y2="336.25" />
+                    <line id="hline3" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="294.25" x2="320"
+                          y2="294.25" />
+                    <line id="hline4" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="252.25" x2="320"
+                          y2="252.25" />
+                    <line id="hline5" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="210.25" x2="320"
+                          y2="210.25" />
+                    <line id="hline6" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="168.25" x2="320"
+                          y2="168.25" />
+                </g>
+                <g id="panel_segment">
+                    <rect id="box_segment" fill="#474749" stroke="#474749" x="20" y="428" width="310" height="44" />
+                    <text id="txt_segment" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="445" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">SEGMENT</text>
+            <text id="txt_numbers" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="460" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">NUMBERS</text>
+                    <rect id="block_d" fill="#ffffff" stroke="#ffffff" x="39" y="433" width="40" height="35" />
+                    <rect id="block_i" fill="#ffffff" stroke="#ffffff" x="99" y="433" width="40" height="35" />
+                    <rect id="block_s" fill="#ffffff" stroke="#ffffff" x="159" y="433" width="40" height="35" />
+                    <rect id="block_c" fill="#ffffff" stroke="#ffffff" x="219" y="433" width="40" height="35" />
+                    <text id="value_d" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="60" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d1.d}}</text>
+            <text id="value_i" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="120" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d1.i}}</text>
+            <text id="value_s" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="180" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d1.s}}</text>
+            <text id="value_c" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="240" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d1.c}}</text>
+                </g>
+                <g id="panel_pattern">
+                    <rect id="box_pattern" fill="#474749" stroke="#474749" x="20" y="488" width="310" height="44" />
+                    <text id="txt_classical" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="505" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">CLASSICAL</text>
+            <text id="txt_patterns" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="520" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">PATTERNS</text>
+                    <rect id="block_pattern" stroke="#ffffff" fill="#ffffff" x="39" y="493" width="220" height="35" />
+                    <text id="value_pattern" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="142.5" y="516" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve"></text>
+                </g>
+                <g id="segment_number">
+                    <text id="label_segment" font-weight="bold" xml:space="preserve" text-anchor="middle"
+                font-family="Sans-serif" font-size="10" y="110" x="310" stroke-width="0" stroke="#474749"
+                fill="#474749">segment</text>
+                    <rect id="segment_bar" fill="#474749" stroke="#474749" x="308" y="118" width="22" height="301" />
+                    <text id="segment1" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="405" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">1</text>
+            <text id="segment2" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="362" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">2</text>
+            <text id="segment3" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="319" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">3</text>
+            <text id="segment4" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="276" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">4</text>
+            <text id="segment5" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="233" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">5</text>
+            <text id="segment6" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="190" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+            <text id="segment7" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="147" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">7</text>
+                </g>
+                <g id="intensity_number">
+                    <text id="label_intensity" font-weight="bold" xml:space="preserve" text-anchor="middle"
+                font-family="Sans-serif" font-size="10" y="114" x="40" stroke-width="0" stroke="#474749"
+                fill="#474749">intensity</text>
+                    <rect id="intensity_bar" fill="#474749" stroke="#474749" x="20" y="118" width="15" height="301" />
+                    <text id="intensity1" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="415" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">1</text>
+            <text id="intensity2" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="404.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">2</text>
+            <text id="intensity3" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="394" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">3</text>
+            <text id="intensity4" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="383.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">4</text>
+            <text id="intensity5" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="373" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">5</text>
+            <text id="intensity6" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="362.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">6</text>
+            <text id="intensity7" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="352" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">7</text>
+            <text id="intensity8" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="341.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">8</text>
+            <text id="intensity9" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="331" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">9</text>
+            <text id="intensity10" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="320.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">10</text>
+            <text id="intensity11" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="310" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">11</text>
+            <text id="intensity12" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="299.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">12</text>
+            <text id="intensity13" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="289" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">13</text>
+            <text id="intensity14" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="278.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">14</text>
+            <text id="intensity15" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="268" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">15</text>
+            <text id="intensity16" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="257.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">16</text>
+            <text id="intensity17" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="247" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">17</text>
+            <text id="intensity18" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="236.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">18</text>
+            <text id="intensity19" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="226" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">19</text>
+            <text id="intensity20" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="215.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">20</text>
+            <text id="intensity21" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="205" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">21</text>
+            <text id="intensity22" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="194.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">22</text>
+            <text id="intensity23" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="184" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">23</text>
+            <text id="intensity24" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="173.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">24</text>
+            <text id="intensity25" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="163" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">25</text>
+            <text id="intensity26" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="152.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">26</text>
+            <text id="intensity27" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="142" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">27</text>
+            <text id="intensity28" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="131.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">28</text>
+                </g>
+                <g id="label">
+                    <path id="sign_d" fill="#474749" stroke="#474749"
+                          d="m57.05901,77.941l23.45455,0l19.54545,21.55901l-19.54545,21.55901l-23.45455,0l0,-43.11803l0,0.00001z"
+                          transform="rotate(90 78.55901336669922,99.50000000000001) " />
+                    <path id="sign_i" fill="#474749" stroke="#474749"
+                          d="m117.05901,77.94097l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11802l0,-0.00001z"
+                          transform="rotate(90 138.55902099609378,99.49998474121095) " />
+                    <path id="sign_s" fill="#474749" stroke="#474749"
+                          d="m177.05901,77.94098l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11803z"
+                          transform="rotate(90 198.55900573730472,99.50000000000001) " />
+                    <path id="sign_c" fill="#474749" stroke="#474749"
+                          d="m237.05901,77.941l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11803z"
+                          transform="rotate(90 258.5590209960938,99.50001525878909) " />
+                    <text id="label_d" fill="#ffffff" stroke="#000000" stroke-width="0" x="77" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">D</text>
+            <text id="label_i" fill="#ffffff" stroke="#000000" stroke-width="0" x="137" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">I</text>
+            <text id="label_s" fill="#ffffff" stroke="#000000" stroke-width="0" x="197" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">S</text>
+            <text id="label_c" fill="#ffffff" stroke="#000000" stroke-width="0" x="257" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">C</text>
+                    <rect id="bar_d" fill="#474749" x="77" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_i" fill="#474749" x="137" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_s" fill="#474749" x="197" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_c" fill="#474749" x="257" y="118" width="3" height="300" stroke="#474749" />
+                </g>
+                <g id="plot">
+                    <ellipse id="point_d" ry="8" rx="8" :cy="resultData.d1.d_p" cx="78.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_i" ry="8" rx="8" :cy="resultData.d1.i_p" cx="138.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_s" ry="8" rx="8" :cy="resultData.d1.s_p" cx="198.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_c" ry="8" rx="8" :cy="resultData.d1.c_p" cx="258.5" stroke="#b3d2f2" fill="#898989" />
+                    <line id="line_di" :y1="resultData.d1.d_p" x1="78.5" :y2="resultData.d1.i_p" x2="138.5" stroke-width="5" stroke="#d03536" fill="none" />
+                    <line id="line_is" :y1="resultData.d1.i_p" x1="138.5" :y2="resultData.d1.s_p" x2="198.5" stroke-width="5" stroke="#d03536"
+                          fill="none" />
+                    <line id="line_sc" :y1="resultData.d1.s_p" x1="198.5" :y2="resultData.d1.c_p" x2="258.5" stroke-width="5" stroke="#d03536"
+                          fill="none" />
+                </g>
+            </g>
+        </svg>
+
+<!-- d2-->
+        <svg width="340" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g class="layer">
+                <title>内在</title>
+                <g id="panel_top">
+                    <rect id="box_title" fill="#474749" x="20" y="15" width="310" height="35" stroke="#474749" />
+                    <text id="title_text" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="170" y="40" font-size="24"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">内在</text>
+                </g>
+                <g id="horizontal_line">
+                    <rect id="shadow_center" fill="#b1b1b3" stroke="#b3d2f2" x="18.38889" y="252.25" width="310" height="44" />
+                    <line id="hline1" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="378.25" x2="320"
+                          y2="378.25" />
+                    <line id="hline2" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="336.25" x2="320"
+                          y2="336.25" />
+                    <line id="hline3" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="294.25" x2="320"
+                          y2="294.25" />
+                    <line id="hline4" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="252.25" x2="320"
+                          y2="252.25" />
+                    <line id="hline5" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="210.25" x2="320"
+                          y2="210.25" />
+                    <line id="hline6" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="168.25" x2="320"
+                          y2="168.25" />
+                </g>
+                <g id="panel_segment">
+                    <rect id="box_segment" fill="#474749" stroke="#474749" x="20" y="428" width="310" height="44" />
+                    <text id="txt_segment" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="445" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">SEGMENT</text>
+            <text id="txt_numbers" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="460" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">NUMBERS</text>
+                    <rect id="block_d" fill="#ffffff" stroke="#ffffff" x="39" y="433" width="40" height="35" />
+                    <rect id="block_i" fill="#ffffff" stroke="#ffffff" x="99" y="433" width="40" height="35" />
+                    <rect id="block_s" fill="#ffffff" stroke="#ffffff" x="159" y="433" width="40" height="35" />
+                    <rect id="block_c" fill="#ffffff" stroke="#ffffff" x="219" y="433" width="40" height="35" />
+                    <text id="value_d" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="60" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d2.d}}</text>
+            <text id="value_i" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="120" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d2.i}}</text>
+            <text id="value_s" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="180" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d2.s}}</text>
+            <text id="value_c" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="240" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d2.c}}</text>
+                </g>
+                <g id="panel_pattern">
+                    <rect id="box_pattern" fill="#474749" stroke="#474749" x="20" y="488" width="310" height="44" />
+                    <text id="txt_classical" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="505" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">CLASSICAL</text>
+            <text id="txt_patterns" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="520" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">PATTERNS</text>
+                    <rect id="block_pattern" stroke="#ffffff" fill="#ffffff" x="39" y="493" width="220" height="35" />
+                    <text id="value_pattern" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="142.5" y="516" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve"></text>
+                </g>
+                <g id="segment_number">
+                    <text id="label_segment" font-weight="bold" xml:space="preserve" text-anchor="middle"
+                font-family="Sans-serif" font-size="10" y="110" x="310" stroke-width="0" stroke="#474749"
+                fill="#474749">segment</text>
+                    <rect id="segment_bar" fill="#474749" stroke="#474749" x="308" y="118" width="22" height="301" />
+                    <text id="segment1" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="405" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">1</text>
+            <text id="segment2" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="362" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">2</text>
+            <text id="segment3" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="319" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">3</text>
+            <text id="segment4" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="276" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">4</text>
+            <text id="segment5" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="233" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">5</text>
+            <text id="segment6" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="190" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+            <text id="segment7" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="147" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">7</text>
+                </g>
+                <g id="intensity_number">
+                    <text id="label_intensity" font-weight="bold" xml:space="preserve" text-anchor="middle"
+                font-family="Sans-serif" font-size="10" y="114" x="40" stroke-width="0" stroke="#474749"
+                fill="#474749">intensity</text>
+                    <rect id="intensity_bar" fill="#474749" stroke="#474749" x="20" y="118" width="15" height="301" />
+                    <text id="intensity1" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="415" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">1</text>
+            <text id="intensity2" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="404.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">2</text>
+            <text id="intensity3" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="394" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">3</text>
+            <text id="intensity4" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="383.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">4</text>
+            <text id="intensity5" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="373" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">5</text>
+            <text id="intensity6" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="362.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">6</text>
+            <text id="intensity7" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="352" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">7</text>
+            <text id="intensity8" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="341.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">8</text>
+            <text id="intensity9" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="331" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">9</text>
+            <text id="intensity10" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="320.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">10</text>
+            <text id="intensity11" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="310" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">11</text>
+            <text id="intensity12" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="299.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">12</text>
+            <text id="intensity13" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="289" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">13</text>
+            <text id="intensity14" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="278.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">14</text>
+            <text id="intensity15" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="268" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">15</text>
+            <text id="intensity16" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="257.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">16</text>
+            <text id="intensity17" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="247" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">17</text>
+            <text id="intensity18" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="236.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">18</text>
+            <text id="intensity19" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="226" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">19</text>
+            <text id="intensity20" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="215.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">20</text>
+            <text id="intensity21" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="205" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">21</text>
+            <text id="intensity22" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="194.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">22</text>
+            <text id="intensity23" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="184" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">23</text>
+            <text id="intensity24" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="173.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">24</text>
+            <text id="intensity25" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="163" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">25</text>
+            <text id="intensity26" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="152.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">26</text>
+            <text id="intensity27" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="142" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">27</text>
+            <text id="intensity28" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="131.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">28</text>
+                </g>
+                <g id="label">
+                    <path id="sign_d" fill="#474749" stroke="#474749"
+                          d="m57.05901,77.941l23.45455,0l19.54545,21.55901l-19.54545,21.55901l-23.45455,0l0,-43.11803l0,0.00001z"
+                          transform="rotate(90 78.55901336669922,99.50000000000001) " />
+                    <path id="sign_i" fill="#474749" stroke="#474749"
+                          d="m117.05901,77.94097l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11802l0,-0.00001z"
+                          transform="rotate(90 138.55902099609378,99.49998474121095) " />
+                    <path id="sign_s" fill="#474749" stroke="#474749"
+                          d="m177.05901,77.94098l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11803z"
+                          transform="rotate(90 198.55900573730472,99.50000000000001) " />
+                    <path id="sign_c" fill="#474749" stroke="#474749"
+                          d="m237.05901,77.941l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11803z"
+                          transform="rotate(90 258.5590209960938,99.50001525878909) " />
+                    <text id="label_d" fill="#ffffff" stroke="#000000" stroke-width="0" x="77" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">D</text>
+            <text id="label_i" fill="#ffffff" stroke="#000000" stroke-width="0" x="137" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">I</text>
+            <text id="label_s" fill="#ffffff" stroke="#000000" stroke-width="0" x="197" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">S</text>
+            <text id="label_c" fill="#ffffff" stroke="#000000" stroke-width="0" x="257" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">C</text>
+                    <rect id="bar_d" fill="#474749" x="77" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_i" fill="#474749" x="137" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_s" fill="#474749" x="197" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_c" fill="#474749" x="257" y="118" width="3" height="300" stroke="#474749" />
+                </g>
+                <g id="plot">
+                    <ellipse id="point_d" ry="8" rx="8" :cy="resultData.d2.d_p" cx="78.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_i" ry="8" rx="8" :cy="resultData.d2.i_p" cx="138.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_s" ry="8" rx="8" :cy="resultData.d2.s_p" cx="198.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_c" ry="8" rx="8" :cy="resultData.d2.c_p" cx="258.5" stroke="#b3d2f2" fill="#898989" />
+                    <line id="line_di" :y1="resultData.d2.d_p" x1="78.5" :y2="resultData.d2.i_p" x2="138.5" stroke-width="5" stroke="#d03536" fill="none" />
+                    <line id="line_is" :y1="resultData.d2.i_p" x1="138.5" :y2="resultData.d2.s_p" x2="198.5" stroke-width="5" stroke="#d03536"
+                          fill="none" />
+                    <line id="line_sc" :y1="resultData.d2.s_p" x1="198.5" :y2="resultData.d2.c_p" x2="258.5" stroke-width="5" stroke="#d03536"
+                          fill="none" />
+                </g>
+            </g>
+        </svg>
+
+        <!-- d3 -->
+        <svg width="340" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g class="layer">
+                <title>现在</title>
+                <g id="panel_top">
+                    <rect id="box_title" fill="#474749" x="20" y="15" width="310" height="35" stroke="#474749" />
+                    <text id="title_text" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="170" y="40" font-size="24"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">现在</text>
+                </g>
+                <g id="horizontal_line">
+                    <rect id="shadow_center" fill="#b1b1b3" stroke="#b3d2f2" x="18.38889" y="252.25" width="310" height="44" />
+                    <line id="hline1" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="378.25" x2="320"
+                          y2="378.25" />
+                    <line id="hline2" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="336.25" x2="320"
+                          y2="336.25" />
+                    <line id="hline3" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="294.25" x2="320"
+                          y2="294.25" />
+                    <line id="hline4" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="252.25" x2="320"
+                          y2="252.25" />
+                    <line id="hline5" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="210.25" x2="320"
+                          y2="210.25" />
+                    <line id="hline6" fill="none" stroke="#474749" stroke-dasharray="5,5" x1="25" y1="168.25" x2="320"
+                          y2="168.25" />
+                </g>
+                <g id="panel_segment">
+                    <rect id="box_segment" fill="#474749" stroke="#474749" x="20" y="428" width="310" height="44" />
+                    <text id="txt_segment" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="445" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">SEGMENT</text>
+            <text id="txt_numbers" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="460" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">NUMBERS</text>
+                    <rect id="block_d" fill="#ffffff" stroke="#ffffff" x="39" y="433" width="40" height="35" />
+                    <rect id="block_i" fill="#ffffff" stroke="#ffffff" x="99" y="433" width="40" height="35" />
+                    <rect id="block_s" fill="#ffffff" stroke="#ffffff" x="159" y="433" width="40" height="35" />
+                    <rect id="block_c" fill="#ffffff" stroke="#ffffff" x="219" y="433" width="40" height="35" />
+                    <text id="value_d" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="60" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d3.d}}</text>
+            <text id="value_i" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="120" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d3.i}}</text>
+            <text id="value_s" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="180" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d3.s}}</text>
+            <text id="value_c" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="240" y="458" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">{{resultData.d3.c}}</text>
+                </g>
+                <g id="panel_pattern">
+                    <rect id="box_pattern" fill="#474749" stroke="#474749" x="20" y="488" width="310" height="44" />
+                    <text id="txt_classical" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="505" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">CLASSICAL</text>
+            <text id="txt_patterns" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="10"
+                y="520" x="300" stroke-width="0" stroke="#474749" fill="#ffffff">PATTERNS</text>
+                    <rect id="block_pattern" stroke="#ffffff" fill="#ffffff" x="39" y="493" width="220" height="35" />
+                    <text id="value_pattern" fill="#000000" stroke="#b3d2f2" stroke-width="0" x="142.5" y="516" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve"></text>
+                </g>
+                <g id="segment_number">
+                    <text id="label_segment" font-weight="bold" xml:space="preserve" text-anchor="middle"
+                font-family="Sans-serif" font-size="10" y="110" x="310" stroke-width="0" stroke="#474749"
+                fill="#474749">segment</text>
+                    <rect id="segment_bar" fill="#474749" stroke="#474749" x="308" y="118" width="22" height="301" />
+                    <text id="segment1" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="405" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">1</text>
+            <text id="segment2" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="362" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">2</text>
+            <text id="segment3" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="319" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">3</text>
+            <text id="segment4" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="276" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">4</text>
+            <text id="segment5" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="233" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">5</text>
+            <text id="segment6" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="190" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">6</text>
+            <text id="segment7" fill="#ffffff" stroke="#b3d2f2" stroke-width="0" x="320" y="147" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve">7</text>
+                </g>
+                <g id="intensity_number">
+                    <text id="label_intensity" font-weight="bold" xml:space="preserve" text-anchor="middle"
+                font-family="Sans-serif" font-size="10" y="114" x="40" stroke-width="0" stroke="#474749"
+                fill="#474749">intensity</text>
+                    <rect id="intensity_bar" fill="#474749" stroke="#474749" x="20" y="118" width="15" height="301" />
+                    <text id="intensity1" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="415" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">1</text>
+            <text id="intensity2" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="404.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">2</text>
+            <text id="intensity3" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="394" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">3</text>
+            <text id="intensity4" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="383.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">4</text>
+            <text id="intensity5" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="373" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">5</text>
+            <text id="intensity6" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="362.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">6</text>
+            <text id="intensity7" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="352" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">7</text>
+            <text id="intensity8" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="341.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">8</text>
+            <text id="intensity9" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="331" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">9</text>
+            <text id="intensity10" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="320.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">10</text>
+            <text id="intensity11" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="310" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">11</text>
+            <text id="intensity12" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="299.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">12</text>
+            <text id="intensity13" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="289" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">13</text>
+            <text id="intensity14" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="278.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">14</text>
+            <text id="intensity15" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="268" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">15</text>
+            <text id="intensity16" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="257.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">16</text>
+            <text id="intensity17" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="247" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">17</text>
+            <text id="intensity18" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="236.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">18</text>
+            <text id="intensity19" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="226" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">19</text>
+            <text id="intensity20" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="215.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">20</text>
+            <text id="intensity21" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="205" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">21</text>
+            <text id="intensity22" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="194.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">22</text>
+            <text id="intensity23" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="184" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">23</text>
+            <text id="intensity24" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="173.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">24</text>
+            <text id="intensity25" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="163" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">25</text>
+            <text id="intensity26" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="152.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">26</text>
+            <text id="intensity27" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="142" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">27</text>
+            <text id="intensity28" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="9"
+                y="131.5" x="26.5625" stroke-width="0" stroke="#000000" fill="#ffffff">28</text>
+                </g>
+                <g id="label">
+                    <path id="sign_d" fill="#474749" stroke="#474749"
+                          d="m57.05901,77.941l23.45455,0l19.54545,21.55901l-19.54545,21.55901l-23.45455,0l0,-43.11803l0,0.00001z"
+                          transform="rotate(90 78.55901336669922,99.50000000000001) " />
+                    <path id="sign_i" fill="#474749" stroke="#474749"
+                          d="m117.05901,77.94097l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11802l0,-0.00001z"
+                          transform="rotate(90 138.55902099609378,99.49998474121095) " />
+                    <path id="sign_s" fill="#474749" stroke="#474749"
+                          d="m177.05901,77.94098l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11803z"
+                          transform="rotate(90 198.55900573730472,99.50000000000001) " />
+                    <path id="sign_c" fill="#474749" stroke="#474749"
+                          d="m237.05901,77.941l23.45455,0l19.54545,21.55902l-19.54545,21.55901l-23.45455,0l0,-43.11803z"
+                          transform="rotate(90 258.5590209960938,99.50001525878909) " />
+                    <text id="label_d" fill="#ffffff" stroke="#000000" stroke-width="0" x="77" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">D</text>
+            <text id="label_i" fill="#ffffff" stroke="#000000" stroke-width="0" x="137" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">I</text>
+            <text id="label_s" fill="#ffffff" stroke="#000000" stroke-width="0" x="197" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">S</text>
+            <text id="label_c" fill="#ffffff" stroke="#000000" stroke-width="0" x="257" y="100" font-size="20"
+                font-family="Sans-serif" text-anchor="middle" xml:space="preserve" font-weight="bold">C</text>
+                    <rect id="bar_d" fill="#474749" x="77" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_i" fill="#474749" x="137" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_s" fill="#474749" x="197" y="118" width="3" height="300" stroke="#474749" />
+                    <rect id="bar_c" fill="#474749" x="257" y="118" width="3" height="300" stroke="#474749" />
+                </g>
+                <g id="plot">
+                    <ellipse id="point_d" ry="8" rx="8" :cy="resultData.d3.d_p" cx="78.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_i" ry="8" rx="8" :cy="resultData.d3.i_p" cx="138.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_s" ry="8" rx="8" :cy="resultData.d3.s_p" cx="198.5" stroke="#b3d2f2" fill="#898989" />
+                    <ellipse id="point_c" ry="8" rx="8" :cy="resultData.d3.c_p" cx="258.5" stroke="#b3d2f2" fill="#898989" />
+                    <line id="line_di" :y1="resultData.d3.d_p" x1="78.5" :y2="resultData.d3.i_p" x2="138.5" stroke-width="5" stroke="#d03536" fill="none" />
+                    <line id="line_is" :y1="resultData.d3.i_p" x1="138.5" :y2="resultData.d3.s_p" x2="198.5" stroke-width="5" stroke="#d03536"
+                          fill="none" />
+                    <line id="line_sc" :y1="resultData.d3.s_p" x1="198.5" :y2="resultData.d3.c_p" x2="258.5" stroke-width="5" stroke="#d03536"
+                          fill="none" />
+                </g>
+            </g>
+        </svg>
+    </div>
+
+
 </div>
 
 
@@ -248,6 +800,8 @@
             // m["1"=>{"m":1,"l":2}]
             answers: new Map(), // 用户选择的答案
             submitData:"",
+            showResult:false,
+            resultData:null,
         },
         methods: {
             selectm(mIndex){
@@ -291,7 +845,14 @@
             nextQuestion() {
                     if (this.questAnswer.m>0 && this.questAnswer.l>0 && this.questIndex<this.allQuest.length-1) {
                         this.questIndex = this.questIndex + 1;
-                        this.questAnswer={"m":0,"l":0};
+
+                        // 不要都赋值为0，如果回退看答案时，是有原答案都
+                        if(this.answers.get(this.questIndex)){
+                            this.questAnswer = this.answers.get(this.questIndex);
+                        }else{
+                            this.questAnswer={"m":0,"l":0};
+                        }
+
                     } else if(this.questAnswer.m==0 || this.questAnswer.l==0){
                         this.alert("该题目还没选择，请选择完再选择下一题目");
                     }else{
@@ -328,24 +889,54 @@
             },
             submit() {
                 if (this.answers.get(this.questIndex)) {
-                    // 答案求和
-                    let score = 0;
-                    let desc = "未知";
+                    if(this.questAnswer.m>0 && this.questAnswer.l>0){
+                        // 答案求和
+                        let score = 0;
+                        let desc = "未知";
 
-                    // 发送后台提交数据
-                    // // map 转 obj
-                    let obj = Object.create(null);
-                    for (let [k, v] of this.answers) {
-                        obj[k] = v;
+                        // 发送后台提交数据
+                        // // map 转 obj
+                        let obj = Object.create(null);
+                        for (let [k, v] of this.answers) {
+                            obj[k] = v;
+                        }
+                        // console.log(JSON.stringify(obj));
+                        // $("#data").val(JSON.stringify(obj));
+                        // $("#form1").submit();
+                        // 调整为ajax提交
+                        $.ajax({
+                            type: 'post',
+                            url: '/api/shc/disc/discResult',
+                            data: {
+                                "name": this.name,
+                                "data": JSON.stringify(obj),
+                            },
+                            success: function (htmltxt) {
+                                console.log(htmltxt);
+                                if (htmltxt.code == 1) {
+                                    // alert("提交成功");
+                                    v.resultData=htmltxt.data;
+                                    console.log(v.resultData.d1.c_p)
+                                    //隐藏提交按钮
+                                    v.showResult = true;
+                                } else {
+                                    alert("提交失败");
+                                }
+                            }
+                        });
+                    }else{
+                        this.alert("请选择完当前题目再提交");
                     }
-                    // console.log(JSON.stringify(obj));
-                    $("#data").val(JSON.stringify(obj));
-                    $("#form1").submit();
+
 
                 } else {
                     this.alert("该题目还没选择，请选择完再选择下一题目");
                 }
             },
+            showquest(){
+                // 显示答题
+                v.showResult = false;
+            }
         },
     });
 
