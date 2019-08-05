@@ -65,6 +65,15 @@ class DiscController extends HomeBaseController
         }
     }
 
+    function code(){
+        return $this->fetch();
+//        if(cmf_is_mobile()){
+//            return $this->fetch();
+//        }else{
+//            exit("本测试只提供手机版");
+//        }
+    }
+
     function discResult(){
          $datajson = $this->request->param('data');
          $data =json_decode($datajson);

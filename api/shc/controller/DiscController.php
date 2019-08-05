@@ -250,6 +250,12 @@ class DiscController extends RestBaseController
 
     }
 
+    /**
+     * 校验用户输入的授权码
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     function authcodeVerify(){
         $authcode = $this->request->param('authcode');
         if(!$authcode){
@@ -298,4 +304,35 @@ class DiscController extends RestBaseController
         }
         return false;
     }
+
+    /**
+     * 生成新的授权码
+     */
+    function genAuthCode(){
+//        var_dump(strtotime("+1 hour", time()));
+//        exit;
+        $hours = $this->request->param('hours');
+        if(!$hours){
+            return $this->error("未知错误123");
+        }else{
+            // 生成授权码
+//            $ma = md5(time() . mt_rand(1,100));
+            $ma = new ShcCodeModel();
+            $authcode = md5(time() . mt_rand(1,100));
+            $time2 = strtotime("+". $hours ." hour", time());
+            $ma->data([
+                'code' => $authcode,
+                'add_time'    => date("Y-m-d H:i:s",time()),
+                'end_time' => date("Y-m-d H:i:s",$time2),
+                'end_time2' => $time2,
+            ]);
+            if($ma->save()){
+                return $this->success("处理成功",["authcode"=>$authcode]);
+            }else{
+                return $this->error("处理失败");
+            };
+
+        }
+    }
+
 }
