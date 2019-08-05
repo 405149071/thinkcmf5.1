@@ -8,6 +8,8 @@
  */
 namespace api\shc\controller;
 
+use api\shc\model\ShcCodeModel;
+use api\shc\model\ShcDiscCodeModel;
 use cmf\controller\RestBaseController;
 use think\Db;
 
@@ -58,14 +60,29 @@ class disc{
 class DiscController extends RestBaseController
 {
 
+
+    /**
+     *  生成最后结果图表
+     * @throws \think\Exception\DbException
+     */
     function discResult(){
+         $authcode = $this->request->param('authcode');
+         if(!$authcode){
+             return $this->error("未知错误123");
+         }else{
+             // 校验授权码正确性
+            if(!$this->authcodeOK($authcode)){
+                return $this->error("验证码失效");
+            }
+         }
+
          $datajson = $this->request->param('data');
          $data =json_decode($datajson);
 //        var_dump($data);
 
         if(!$data)
         {
-            return $this->error("未知错误");
+            return $this->error("未知错误456");
         }
         //1，2，3，4答案对应的数据库里的真实答案（以角个数定）
         $dbanswer = DB::name('shc_disk')->all();
@@ -221,5 +238,54 @@ class DiscController extends RestBaseController
 
         $this->success('处理成功!',["d1"=>$dm,"d2"=>$dl,"d3"=>$dml]);
 
+    }
+
+    function authcodeVerify(){
+        $authcode = $this->request->param('authcode');
+        if(!$authcode){
+            return $this->error("未知错误123");
+        }else{
+            // 校验授权码正确性
+            if(!$this->authcodeOK($authcode)){
+                return $this->error("验证码失效");
+            }
+        }
+        return $this->success();
+    }
+
+    /**
+     *  校验授权码正确性
+     * @param $code
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    function authcodeOK($code){
+        if($code){
+            $authcode = new ShcCodeModel();
+            $coder = $authcode->where('code', $code)
+                ->find();
+            if($coder){
+                $time2 = $coder["end_time2"];
+                if($time2){
+                    if(time()<=$time2){
+                        return true;
+                    }else{
+//                        return false;
+                        // 过期了
+                    }
+                }else{
+//                    return false;
+                    // 没期限
+                }
+            }else{
+                // 没授权码
+//                return $this->error("出错了");
+            }
+        }else{
+            // 没参数
+        }
+        return false;
     }
 }
