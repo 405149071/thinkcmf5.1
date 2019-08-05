@@ -805,6 +805,66 @@
             showResult:false,
             resultData:null,
         },
+        mounted(){
+            bootbox.dialog({
+                title: "粘贴授权码，点击「确定」开始",
+                message: "<input id='shouquanma' type='text' style='width:100%;height:30px'/>",
+                closeButton:false,
+                backdrop: true,
+                buttons: {
+                            confirm: {
+                                label: "确定",
+                                className: 'btn-info',
+                                callback: function () {
+                                    var shouquanma = $("#shouquanma").val();
+                                    if(shouquanma=="123"){
+                                        return true;
+                                    }
+                                    alert("授权码不对")
+                                    return false;
+                                }
+                            }
+                        }
+            }).css({
+                'margin-top': function () {
+                    var w = $(window).height();
+                    var b = $(".modal-dialog").height();
+                    var h = (w - b) / 2;
+                    return h + "px";
+                }
+            });
+            // bootbox.prompt({
+            //     title: "输入验证码，点击「开始」，来完成您的个人行为测试",
+            //     centerVertical: true,
+            //     closeButton: false,
+            //     buttons: {
+            //         cancel:{},
+            //         confirm: {
+            //             label: "确定",
+            //             className: 'btn-info',
+            //             callback: function () {
+            //
+            //                 console.log('Custom OK clicked');
+            //             }
+            //         }
+            //     },
+            //     callback: function (result) {
+            //         console.log('This was logged in the callback: ' + result);
+            //         alert("okoko");
+            //         alert(result)
+            //         // 异步回调，用this不好用
+            //         // if (result != null)
+            //             // v.name = result;
+            //     }
+            // }).css({
+            //     'margin-top': function () {
+            //         var w = $(window).height();
+            //         var b = $(".modal-dialog").height();
+            //         var h = (w - b) / 2;
+            //         return h + "px";
+            //     }
+            // });
+        },
         methods: {
             selectm(mIndex){
                 console.log("选择了", this.questIndex,",m:", mIndex);
