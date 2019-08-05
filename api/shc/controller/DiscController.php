@@ -10,6 +10,7 @@ namespace api\shc\controller;
 
 use api\shc\model\ShcCodeModel;
 use api\shc\model\ShcDiscCodeModel;
+use api\shc\model\ShcDiscDetailModel;
 use cmf\controller\RestBaseController;
 use think\Db;
 
@@ -84,6 +85,15 @@ class DiscController extends RestBaseController
         {
             return $this->error("未知错误456");
         }
+        // 记录数据库日志
+        $detail = new ShcDiscDetailModel();
+        $detail->data([
+            'code' => $authcode,
+            'result'    => $datajson,
+            'add_time' => date("Y-m-d H:i:s",time()),
+        ]);
+        $detail->save();
+
         //1，2，3，4答案对应的数据库里的真实答案（以角个数定）
         $dbanswer = DB::name('shc_disk')->all();
 
