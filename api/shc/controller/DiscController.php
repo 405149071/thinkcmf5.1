@@ -48,14 +48,22 @@ class pos{
 }
 
 class disc{
-    var $d=0;
+    var $d=0; // 每个disc出现的个数
     var $d_p=0; //位置，相对于（-28，28）
+    var $d_px=0; // px位置，图中实际位置
+    var $dl=0;  // 右侧对应的区域，为左侧对应区域的/4 ，ceil
     var $i=0;
     var $i_p=0;
+    var $i_px=0;
+    var $il=0;
     var $s=0;
     var $s_p=0;
+    var $s_px=0;
+    var $sl=0;
     var $c=0;
     var $c_p=0;
+    var $c_px=0;
+    var $cl=0;
 }
 
 class DiscController extends RestBaseController
@@ -220,21 +228,50 @@ class DiscController extends RestBaseController
         $pos["28"]= new pos(0,28,28,28,28,1,1,1,1,28,28,28,28);
 
 //        var_dump($pos);
-        // most的位置
-        $dm->d_p=415-10.5*$pos[$dm->d]->d1;
-        $dm->i_p=415-10.5*$pos[$dm->i]->i1;
-        $dm->s_p=415-10.5*$pos[$dm->s]->s1;
-        $dm->c_p=415-10.5*$pos[$dm->c]->c1;
+        // most的位置  ,16的位置是15个高度，需要少减一个
+        $dm->d_p=$pos[$dm->d]->d1;
+        $dm->d_px=415-10.5*$dm->d_p+10.5;
+        $dm->i_p=$pos[$dm->i]->i1;
+        $dm->i_px=415-10.5*$dm->i_p+10.5;
+        $dm->s_p=$pos[$dm->s]->s1;
+        $dm->s_px=415-10.5*$dm->s_p+10.5;
+        $dm->c_p=$pos[$dm->c]->c1;
+        $dm->c_px=415-10.5*$dm->c_p+10.5;
         // least 位置
-        $dl->d_p=415-10.5*$pos[$dl->d]->d2;
-        $dl->i_p=415-10.5*$pos[$dl->i]->i2;
-        $dl->s_p=415-10.5*$pos[$dl->s]->s2;
-        $dl->c_p=415-10.5*$pos[$dl->c]->c2;
+        $dl->d_p=$pos[$dl->d]->d2;
+        $dl->d_px=415-10.5*$dl->d_p+10.5;
+        $dl->i_p=$pos[$dl->i]->i2;
+        $dl->i_px=415-10.5*$dl->i_p+10.5;
+        $dl->s_p=$pos[$dl->s]->s2;
+        $dl->s_px=415-10.5*$dl->s_p+10.5;
+        $dl->c_p=$pos[$dl->c]->c2;
+        $dl->c_px=415-10.5*$dl->c_p+10.5;
         // 差值位置
-        $dml->d_p=415-10.5*$pos[$dml->d]->d3;
-        $dml->i_p=415-10.5*$pos[$dml->i]->i3;
-        $dml->s_p=415-10.5*$pos[$dml->s]->s3;
-        $dml->c_p=415-10.5*$pos[$dml->c]->c3;
+        $dml->d_p=$pos[$dml->d]->d3;
+        $dml->d_px=415-10.5*$dml->d_p+10.5;
+        $dml->i_p=$pos[$dml->i]->i3;
+        $dml->i_px=415-10.5*$dml->i_p+10.5;
+        $dml->s_p=$pos[$dml->s]->s3;
+        $dml->s_px=415-10.5*$dml->s_p+10.5;
+        $dml->c_p=$pos[$dml->c]->c3;
+        $dml->c_px=415-10.5*$dml->c_p+10.5;
+
+        // 计算disc的右侧的区域值，为右侧的数值,左侧4个数字为右侧一个区域
+        // most
+        $dm->dl=ceil($dm->d_p/4);
+        $dm->il=ceil($dm->i_p/4);
+        $dm->sl=ceil($dm->s_p/4);
+        $dm->cl=ceil($dm->c_p/4);
+        // least
+        $dl->dl=ceil($dl->d_p/4);
+        $dl->il=ceil($dl->i_p/4);
+        $dl->sl=ceil($dl->s_p/4);
+        $dl->cl=ceil($dl->c_p/4);
+        // 差异
+        $dml->dl=ceil($dml->d_p/4);
+        $dml->il=ceil($dml->i_p/4);
+        $dml->sl=ceil($dml->s_p/4);
+        $dml->cl=ceil($dml->c_p/4);
 
         // 查看位置
 //        var_dump($dm);
