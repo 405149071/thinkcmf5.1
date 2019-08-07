@@ -28,6 +28,7 @@ if (interface_exists('Psr\Log\LoggerInterface')) {
     {}
 }
 
+
 // 注册类库别名
 Loader::addClassAlias([
     'App'      => facade\App::class,

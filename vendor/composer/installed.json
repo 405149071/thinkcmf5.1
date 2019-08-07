@@ -12,7 +12,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/electrolinux/phpquery/zipball/6cb8afcfe8cd4ce45f2f8c27d561383037c27a3a",
             "reference": "6cb8afcfe8cd4ce45f2f8c27d561383037c27a3a",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "time": "2013-03-21T12:39:33+00:00",
         "type": "library",
@@ -54,7 +60,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d85d39da4576a6934b72480be6978fb10c860021",
             "reference": "d85d39da4576a6934b72480be6978fb10c860021",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.2"
@@ -103,7 +115,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/php-annotations/php-annotations/zipball/77ef66f79fb65a7b7e7e005be0bd6b643de43867",
             "reference": "77ef66f79fb65a7b7e7e005be0bd6b643de43867",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.3.3"
@@ -143,6 +161,92 @@
         ]
     },
     {
+        "name": "monolog/monolog",
+        "version": "1.24.0",
+        "version_normalized": "1.24.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Seldaek/monolog.git",
+            "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
+            "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "psr/log": "~1.0"
+        },
+        "provide": {
+            "psr/log-implementation": "1.0.0"
+        },
+        "require-dev": {
+            "aws/aws-sdk-php": "^2.4.9 || ^3.0",
+            "doctrine/couchdb": "~1.0@dev",
+            "graylog2/gelf-php": "~1.0",
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "php-amqplib/php-amqplib": "~2.4",
+            "php-console/php-console": "^3.1.3",
+            "phpunit/phpunit": "~4.5",
+            "phpunit/phpunit-mock-objects": "2.3.0",
+            "ruflin/elastica": ">=0.90 <3.0",
+            "sentry/sentry": "^0.13",
+            "swiftmailer/swiftmailer": "^5.3|^6.0"
+        },
+        "suggest": {
+            "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
+            "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+            "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+            "ext-mongo": "Allow sending log messages to a MongoDB server",
+            "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+            "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+            "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
+            "php-console/php-console": "Allow sending log messages to Google Chrome",
+            "rollbar/rollbar": "Allow sending log messages to Rollbar",
+            "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
+            "sentry/sentry": "Allow sending log messages to a Sentry server"
+        },
+        "time": "2018-11-05T09:00:11+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Monolog\\": "src/Monolog"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jordi Boggiano",
+                "email": "j.boggiano@seld.be",
+                "homepage": "http://seld.be"
+            }
+        ],
+        "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+        "homepage": "http://github.com/Seldaek/monolog",
+        "keywords": [
+            "log",
+            "logging",
+            "psr-3"
+        ]
+    },
+    {
         "name": "phpmailer/phpmailer",
         "version": "v6.0.7",
         "version_normalized": "6.0.7.0",
@@ -155,7 +259,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/0c41a36d4508d470e376498c1c0c527aa36a2d59",
             "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "ext-ctype": "*",
@@ -211,6 +321,61 @@
         "description": "PHPMailer is a full-featured email creation and transfer class for PHP"
     },
     {
+        "name": "psr/log",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2018-11-20T15:27:04+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
+        ]
+    },
+    {
         "name": "thinkcmf/cmf",
         "version": "v5.1.6",
         "version_normalized": "5.1.6.0",
@@ -223,7 +388,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/thinkcmf/cmf-core/zipball/b16a47b76fcd77d570103a3623011747e7a51f01",
             "reference": "b16a47b76fcd77d570103a3623011747e7a51f01",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "electrolinux/phpquery": "^0.9.6",
@@ -275,7 +446,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/thinkcmf/cmf-api/zipball/9481157c43e6ebf58b6ff2b0ac59217aa91fb9f4",
             "reference": "9481157c43e6ebf58b6ff2b0ac59217aa91fb9f4",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "thinkcmf/cmf": "~5.1.0"
@@ -314,7 +491,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/thinkcmf/cmf-app/zipball/e61386cbf70770cf696b728d04376b8bdd924299",
             "reference": "e61386cbf70770cf696b728d04376b8bdd924299",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "thinkcmf/cmf": "~5.1.0"
@@ -353,7 +536,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/thinkcmf/cmf-extend/zipball/39cbfdc69980a4f4b98ee82fa16c605004f26f5f",
             "reference": "39cbfdc69980a4f4b98ee82fa16c605004f26f5f",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "time": "2019-03-04T05:15:23+00:00",
         "type": "library",
@@ -391,7 +580,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/thinkcmf/cmf-install/zipball/259eeffdf8ed96dc600bc6721e046a9d52b5be2d",
             "reference": "259eeffdf8ed96dc600bc6721e046a9d52b5be2d",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "time": "2019-05-27T02:49:00+00:00",
         "type": "library",
@@ -427,7 +622,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/framework/zipball/05eecd121d18d6705aaa10aa44fcdf7c14da4d0b",
             "reference": "05eecd121d18d6705aaa10aa44fcdf7c14da4d0b",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.6.0",
@@ -480,7 +681,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-captcha/zipball/54c8a51552f99ff9ea89ea9c272383a8f738ceee",
             "reference": "54c8a51552f99ff9ea89ea9c272383a8f738ceee",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "topthink/framework": "5.1.*"
@@ -521,7 +728,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-helper/zipball/5f92178606c8ce131d36b37a57c58eb71e55f019",
             "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "time": "2018-10-05T00:43:21+00:00",
         "type": "library",
@@ -559,7 +772,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-image/zipball/8586cf47f117481c6d415b20f7dedf62e79d5512",
             "reference": "8586cf47f117481c6d415b20f7dedf62e79d5512",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "ext-gd": "*"
@@ -601,7 +820,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/top-think/think-installer/zipball/f5400a12c60e513911aef41fe443fa6920952675",
             "reference": "f5400a12c60e513911aef41fe443fa6920952675",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "composer-plugin-api": "^1.0"

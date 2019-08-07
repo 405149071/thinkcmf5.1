@@ -18,5 +18,7 @@ return array(
     'app\\install\\' => array($vendorDir . '/thinkcmf/cmf-install/src'),
     'app\\' => array($vendorDir . '/thinkcmf/cmf-app/src'),
     'api\\' => array($vendorDir . '/thinkcmf/cmf-api/src'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );
