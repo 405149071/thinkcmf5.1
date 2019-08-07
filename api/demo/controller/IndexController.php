@@ -15,6 +15,7 @@ class IndexController extends RestBaseController
 {
     public function index()
     {
+        log4()->debug("apiapi");
         $this->success('请求成功!', ['test'=>'test']);
     }
 }

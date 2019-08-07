@@ -10,3 +10,5 @@
 Vagrantfile
 .vagrant
 public/themes/simpleboot3/shc/disc/readme.txt
+.env
+logs
