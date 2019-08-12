@@ -13,11 +13,11 @@ use cmf\controller\HomeBaseController;
 class DiscController extends HomeBaseController
 {
     function show(){
-        if(cmf_is_mobile()){
+//        if(cmf_is_mobile()){
             return $this->fetch();
-        }else{
-            exit("本测试只提供手机版");
-        }
+//        }else{
+//            exit("本测试只提供手机版");
+//        }
     }
 
     function code(){
