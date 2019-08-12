@@ -69,6 +69,7 @@
             text-align: center;
         }
 
+
         .btn-mybtstyle {
             background: #ff6000;
             border: 1px solid #ff6000;
@@ -125,6 +126,18 @@
             font-size:12px;
             /*border: 1px solid lightgray;*/
         }
+
+        .mytable1 tr td:first-child{
+            white-space:nowrap;
+            text-align: right;
+        }
+
+        #typetitle {
+            font-weight: bolder;
+            font-size:30px;
+            text-align:center ;
+        }
+
 
     </style>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
@@ -750,7 +763,59 @@
                 </g>
             </g>
         </svg>
+
+        <!--加载不同结果显示-->
+        <template v-if='typecode=="00"'>
+            未识别出结果
+        </template>
+        <template v-if='typecode=="01"'>
+            <include file="disc/r/01"/>
+        </template>
+        <template v-if='typecode=="02"'>
+            <include file="disc/r/02"/>
+        </template>
+        <template v-if='typecode=="03"'>
+            <include file="disc/r/03"/>
+        </template>
+        <template v-if='typecode=="04"'>
+            <include file="disc/r/04"/>
+        </template>
+        <template v-if='typecode=="05"'>
+            <include file="disc/r/05"/>
+        </template>
+        <template v-if='typecode=="06"'>
+            <include file="disc/r/06"/>
+        </template>
+        <template v-if='typecode=="07"'>
+            <include file="disc/r/07"/>
+        </template>
+        <template v-if='typecode=="08"'>
+            <include file="disc/r/08"/>
+        </template>
+        <template v-if='typecode=="09"'>
+            <include file="disc/r/09"/>
+        </template>
+        <template v-if='typecode=="10"'>
+            <include file="disc/r/10"/>
+        </template>
+        <template v-if='typecode=="11"'>
+            <include file="disc/r/11"/>
+        </template>
+        <template v-if='typecode=="12"'>
+            <include file="disc/r/12"/>
+        </template>
+        <template v-if='typecode=="13"'>
+            <include file="disc/r/13"/>
+        </template>
+        <template v-if='typecode=="14"'>
+            <include file="disc/r/14"/>
+        </template>
+        <template v-if='typecode=="15"'>
+            <include file="disc/r/15"/>
+        </template>
+
     </div>
+
 
 
 </div>
@@ -811,6 +876,7 @@
             showResult:false,
             resultData:null,
             authcode:"",
+            typecode:"",
         },
         mounted(){
             bootbox.dialog({
@@ -982,6 +1048,8 @@
                                     // 给个缩放比，好看图
                                     var _body = document.getElementsByTagName('body')[0];
                                     _body.style.zoom = 0.3;
+                                    // 显示文字说明
+                                    v.typecode = v.resultData.typecode;
                                 } else {
                                     alert("提交失败");
                                 }

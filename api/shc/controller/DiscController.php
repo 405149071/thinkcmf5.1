@@ -11,6 +11,7 @@ namespace api\shc\controller;
 use api\shc\model\ShcCodeModel;
 use api\shc\model\ShcDiscCodeModel;
 use api\shc\model\ShcDiscDetailModel;
+use api\shc\model\ShcDiscResultModel;
 use cmf\controller\RestBaseController;
 use think\Db;
 
@@ -283,7 +284,64 @@ class DiscController extends RestBaseController
 //        $this->assign("d3",$dml);
 //        return $this->fetch();
 
-        $this->success('处理成功!',["d1"=>$dm,"d2"=>$dl,"d3"=>$dml]);
+        // 01 - 成就者型
+        // 02 - 经纪人型
+        // 03 - 评估者型
+        // 04 - 协谈者型
+        // 05 - 创意者型
+        // 06 - 开创者型
+        // 07 - 激发者型
+        // 08 - 调查者型
+        // 09 - 客观思考者型
+        // 10 - 完美主义者型
+        // 11 - 说服者型
+        // 12 - 务实者型
+        // 13 - 推广者型
+        // 14 - 成果导向者型
+        // 15 - 专业者型
+
+        // 换算结果
+        $typenum = $dml->dl.$dml->il.$dml->sl.$dml->cl;
+
+        $discresult = new ShcDiscResultModel();
+        $typer = $discresult->where('id', $typenum)
+            ->find();
+//        var_dump($typer);
+//        exit;
+        $typecode = "00";
+        if($typer){
+            if($typer['type']=="成就者")
+                $typecode = "01";
+            if($typer['type']=="经纪人")
+                $typecode = "02";
+            if($typer['type']=="评估者")
+                $typecode = "03";
+            if($typer['type']=="协谈者")
+                $typecode = "04";
+            if($typer['type']=="创意者")
+                $typecode = "05";
+            if($typer['type']=="开创者")
+                $typecode = "06";
+            if($typer['type']=="激发者")
+                $typecode = "07";
+            if($typer['type']=="调查者")
+                $typecode = "08";
+            if($typer['type']=="客观思考者")
+                $typecode = "09";
+            if($typer['type']=="完美主义者")
+                $typecode = "10";
+            if($typer['type']=="说服者")
+                $typecode = "11";
+            if($typer['type']=="务实者")
+                $typecode = "12";
+            if($typer['type']=="推广者")
+                $typecode = "13";
+            if($typer['type']=="成果导向者")
+                $typecode = "14";
+            if($typer['type']=="专业者")
+                $typecode = "15";
+        }
+        $this->success('处理成功!',["d1"=>$dm,"d2"=>$dl,"d3"=>$dml,"typecode"=>$typecode]);
 
     }
 
