@@ -33,10 +33,13 @@
             border-radius: 10px;
             text-align: center;
             line-height: 100px;
-            font-size:16px;
+            font-size:50px;
             color:whitesmoke;
         }
 
+        .w100 {
+            width:100%;
+        }
 
     </style>
 </head>
@@ -95,7 +98,7 @@
                 buttons: {
                     confirm: {
                         label: "确定",
-                        className: 'btn-info',
+                        className: 'btn-info w100',
                         callback: function () {
                             var shouquanma = $("#shouquanma").val();
                             // 发送授权码

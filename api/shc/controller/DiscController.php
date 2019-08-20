@@ -373,9 +373,10 @@ class DiscController extends RestBaseController
      * @throws \think\exception\DbException
      */
     function authcodeOK($code){
+        log4()->debug($code);
         if($code){
             $authcode = new ShcCodeModel();
-            $coder = $authcode->where('code', $code)
+            $coder = $authcode->where(['code'=>$code,'status'=>1])
                 ->find();
             if($coder){
                 $time2 = $coder["end_time2"];
@@ -413,13 +414,25 @@ class DiscController extends RestBaseController
             // 生成授权码
 //            $ma = md5(time() . mt_rand(1,100));
             $ma = new ShcCodeModel();
-            $authcode = md5(time() . mt_rand(1,100));
+//            $authcode = md5(time() . mt_rand(1,100));
+            // 按要求生成8位验证码
+            //$authcode=mt_rand(10000000,99999999);
+            $authcode=mt_rand(10,30);
+            //先逻辑删除所有同名的验证码
+
+            $ma->save([
+                'status' => 0,
+                'end_time3' => date("Y-m-d H:i:s",time()),
+            ],['code' => $authcode,'status' => 1]);
+
+            $ma = new ShcCodeModel();
             $time2 = strtotime("+". $hours ." hour", time());
             $ma->data([
                 'code' => $authcode,
                 'add_time'    => date("Y-m-d H:i:s",time()),
                 'end_time' => date("Y-m-d H:i:s",$time2),
                 'end_time2' => $time2,
+                'status' => 1
             ]);
             if($ma->save()){
                 return $this->success("处理成功",["authcode"=>$authcode]);
