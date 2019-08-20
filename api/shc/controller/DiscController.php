@@ -416,8 +416,8 @@ class DiscController extends RestBaseController
             $ma = new ShcCodeModel();
 //            $authcode = md5(time() . mt_rand(1,100));
             // 按要求生成8位验证码
-            //$authcode=mt_rand(10000000,99999999);
-            $authcode=mt_rand(10,30);
+            $authcode=mt_rand(10000000,99999999);
+//            $authcode=mt_rand(10,30);
             //先逻辑删除所有同名的验证码
 
             $ma->save([
